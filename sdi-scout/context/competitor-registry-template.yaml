@@ -1,0 +1,30 @@
+# Competitor Registry Template
+# Fill in companies you want to track for SDI enrichment.
+# This is OPTIONAL. SDI Scout works without it using live web data.
+# Having this file provides bonus context when the skill cluster overlaps with your tracked competitors.
+
+# ATS types: greenhouse, lever, workday, generic
+# board_token: the slug used in their public careers API (e.g., "stripe" for boards-api.greenhouse.io/v1/boards/stripe/jobs)
+
+companies:
+  # Example entries - replace with your own
+  - name: "Example Corp"
+    ats: greenhouse
+    board_token: "examplecorp"
+    hq: "San Francisco, CA"
+    headcount: 5000
+    overlap_notes: "Direct competitor in payments infrastructure"
+
+  - name: "Another Inc"
+    ats: lever
+    board_token: "anotherinc"
+    hq: "New York, NY"
+    headcount: 1200
+    overlap_notes: "Competes for ML engineering talent"
+
+  # - name: ""
+  #   ats: workday
+  #   board_token: ""
+  #   hq: ""
+  #   headcount: 0
+  #   overlap_notes: ""
