@@ -12,12 +12,14 @@ Skills are markdown files that give Claude Code specialized capabilities. Drop a
 |---|---|---|
 | **SDI Scout** | `/sdi-scout` | Paste a JD, get back a ranked list of companies hiring the same talent, Boolean strings, and a tactical sourcing plan |
 | **NextGig Scout** | `/nextgig-scout` | Paste a resume, get back expanded titles you should search, live role matches from ATS boards, and a personalized search plan |
+| **Tone Scout** | `/tone-scout` | Reads your sent emails via Gmail MCP, maps your audience registers, and generates a tone of voice file that makes AI write like you |
 
 ## Getting Started
 
 New to GitHub or Claude Code? Each skill has its own Getting Started guide:
 - [SDI Scout Getting Started](sdi-scout/Getting%20Started%20Guide%20-%20PromptMates%20GitHub.md) (for recruiters sourcing talent)
 - [NextGig Scout Getting Started](nextgig-scout/Getting%20Started%20Guide.md) (for job seekers finding roles)
+- [Tone Scout Getting Started](tone-scout/Getting%20Started%20Guide.md) (for anyone who wants AI to write in their voice)
 
 ## Quick Install (if you already know what you are doing)
 
@@ -47,6 +49,13 @@ claude-skills/
       nextgig-scout.md   (the skill file you install)
     context/
       search-preferences-example.md
+      guardrails-example.md
+  tone-scout/
+    README.md            (detailed docs for Tone Scout)
+    Getting Started Guide.md
+    skills/
+      tone-scout.md      (the skill file you install)
+    context/
       guardrails-example.md
 ```
 
