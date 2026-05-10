@@ -1,12 +1,12 @@
-# SDI Scout
+# SkillsMate
 
-**Skills Density Index for recruiting.** Paste a job description into Claude Code, and SDI Scout tells you which companies are actively hiring that same talent, ranked by intensity, with Boolean search strings and a tactical sourcing plan ready to go.
+**Skills Density Index for recruiting.** Paste a job description into Claude Code, and SkillsMate tells you which companies are actively hiring that same talent, ranked by intensity, with Boolean search strings and a tactical sourcing plan ready to go.
 
 ---
 
 ## What You Get
 
-When you run `/sdi-scout` and paste a JD, you get 4 things back:
+When you run `/skillsmate` and paste a JD, you get 4 things back:
 
 1. **Intake JSON** - The role broken down into its core skills, outcomes, and target market
 2. **Signal Pack** - Companies ranked by a 0-100 skills density score, grouped into Hotbeds (go here first), Reservoirs (steady targets), and New Entrants (emerging demand)
@@ -17,14 +17,14 @@ When you run `/sdi-scout` and paste a JD, you get 4 things back:
 
 ## Setup (15 minutes, one time)
 
-### Step 1: Download SDI Scout
+### Step 1: Download SkillsMate
 
 You are on GitHub right now (https://github.com/promptmates/claude-skills). Here is how to download:
 
 1. Click the green **Code** button near the top of this page
 2. Click **Download ZIP**
 3. Find the downloaded ZIP file (probably in your Downloads folder) and unzip it
-4. You now have a folder called `claude-skills-main`. Inside it, find the `sdi-scout` subfolder.
+4. You now have a folder called `claude-skills-main`. Inside it, find the `skillsmate` subfolder.
 
 ### Step 2: Find your Claude Code project folder
 
@@ -64,12 +64,12 @@ your-project/
 
 ### Step 4: Copy the skill file
 
-From the downloaded `sdi-scout-main` folder:
-- Copy `skills/sdi-scout.md` into your project's `.claude/skills/` folder
+From the downloaded `skillsmate-main` folder:
+- Copy `skills/skillsmate.md` into your project's `.claude/skills/` folder
 
 ### Step 5: Create your context files
 
-SDI Scout needs to know about YOUR company to produce useful output. You need to create 3 short files in your `context/` folder. Examples are included in the download to show you the format.
+SkillsMate needs to know about YOUR company to produce useful output. You need to create 3 short files in your `context/` folder. Examples are included in the download to show you the format.
 
 **Required files:**
 
@@ -89,15 +89,15 @@ SDI Scout needs to know about YOUR company to produce useful output. You need to
 
 | File | What it does |
 |---|---|
-| `context/competitor-registry.yaml` | A list of companies you want SDI Scout to check first. Speeds up results for your known competitors. See `context/competitor-registry-template.yaml` for the format. |
+| `context/competitor-registry.yaml` | A list of companies you want SkillsMate to check first. Speeds up results for your known competitors. See `context/competitor-registry-template.yaml` for the format. |
 
-You can skip this one. SDI Scout works fine without it.
+You can skip this one. SkillsMate works fine without it.
 
 ### Step 6: Verify it works
 
 Open Claude Code in your project folder and type:
 ```
-/sdi-scout
+/skillsmate
 ```
 
 Claude should ask you for a JD or skill cluster. Paste one in, and you should get all 4 outputs.
@@ -106,14 +106,14 @@ Claude should ask you for a JD or skill cluster. Paste one in, and you should ge
 
 ## How to Use It
 
-Once installed, you can trigger SDI Scout any of these ways:
+Once installed, you can trigger SkillsMate any of these ways:
 
 | What you type | What happens |
 |---|---|
-| `/sdi-scout` | Claude asks for a JD, then produces all 4 outputs |
-| "SDI scout for [role name]" | Same thing, specifying the role upfront |
-| "Where is [skill] talent concentrated?" | Runs SDI for a skill cluster without a full JD |
-| "Who else is hiring for this?" (after pasting a JD) | Runs SDI using the JD you just pasted |
+| `/skillsmate` | Claude asks for a JD, then produces all 4 outputs |
+| "SkillsMate for [role name]" | Same thing, specifying the role upfront |
+| "Where is [skill] talent concentrated?" | Runs SkillsMate for a skill cluster without a full JD |
+| "Who else is hiring for this?" (after pasting a JD) | Runs SkillsMate using the JD you just pasted |
 
 ---
 
@@ -152,18 +152,18 @@ The Battle Card is the part you actually hand to your sourcing team:
 
 ## Troubleshooting
 
-**"Claude does not recognize /sdi-scout"**
-- Make sure `sdi-scout.md` is in `.claude/skills/` (not `claude/skills/` - the dot matters)
+**"Claude does not recognize /skillsmate"**
+- Make sure `skillsmate.md` is in `.claude/skills/` (not `claude/skills/` - the dot matters)
 - Make sure you are running Claude Code from your project folder (the one containing `.claude/`)
 
 **"Output mentions placeholder text or example content"**
 - You are still using the example context files. Open `context/company-context.md` and replace the placeholder text with your real company information.
 
 **"Evidence URLs are missing or marked TBD"**
-- This happens when a company's career site does not have a public API. The score is still valid based on available data. SDI Scout marks gaps honestly rather than inventing links.
+- This happens when a company's career site does not have a public API. The score is still valid based on available data. SkillsMate marks gaps honestly rather than inventing links.
 
 **"I only got 8 companies instead of 15"**
-- Normal. SDI Scout targets 15 but only includes companies with real evidence. Fewer results with real data is better than 15 results with padding.
+- Normal. SkillsMate targets 15 but only includes companies with real evidence. Fewer results with real data is better than 15 results with padding.
 
 ---
 

@@ -1,4 +1,4 @@
-# Getting Started with NextGig Scout
+# Getting Started with CareerMate
 
 This guide walks you through setup step by step. No coding experience required.
 
@@ -11,7 +11,7 @@ This guide walks you through setup step by step. No coding experience required.
    - Follow the installation instructions for your operating system (Mac, Windows, or Linux)
    - Claude Code is available as a CLI, desktop app, and IDE extension
 
-2. **A project folder** - any folder on your computer where you want to run NextGig Scout from. This can be an empty folder you create just for this purpose.
+2. **A project folder** - any folder on your computer where you want to run CareerMate from. This can be an empty folder you create just for this purpose.
 
 ---
 
@@ -24,7 +24,7 @@ On this GitHub page:
 2. Click **Download ZIP**
 3. Find the ZIP in your Downloads folder and unzip it (double-click on Mac, right-click > Extract on Windows)
 
-You now have a folder with the NextGig Scout files inside.
+You now have a folder with the CareerMate files inside.
 
 ### 2. Set up your project folder
 
@@ -57,7 +57,7 @@ From the downloaded folder:
 
 | Copy this file | To this location |
 |---|---|
-| `skills/nextgig-scout.md` | `your-project/.claude/skills/nextgig-scout.md` |
+| `skills/careermate.md` | `your-project/.claude/skills/careermate.md` |
 | `context/guardrails-example.md` | `your-project/context/guardrails.md` (rename it) |
 | `context/search-preferences-example.md` | `your-project/context/search-preferences.md` (rename it) |
 
@@ -78,16 +78,16 @@ This file is private to your computer. It never gets uploaded anywhere.
 
 1. Open Claude Code
 2. Navigate to your project folder (or open it from the desktop app)
-3. Type: `/nextgig-scout`
+3. Type: `/careermate`
 4. Claude should respond by asking what you have (resume, LinkedIn, etc.)
 
-If Claude does not recognize the command, double-check that `nextgig-scout.md` is in the `.claude/skills/` folder (with the dot).
+If Claude does not recognize the command, double-check that `careermate.md` is in the `.claude/skills/` folder (with the dot).
 
 ---
 
 ## Your First Run
 
-When you type `/nextgig-scout`, here is what happens:
+When you type `/careermate`, here is what happens:
 
 **Step 1: Claude asks what you have**
 
@@ -156,14 +156,14 @@ The search plan includes a suggested cadence. Job searching is a grind. A routin
 **Do I need to pay for Claude Code?**
 Claude Code requires an Anthropic account. Check current pricing at anthropic.com.
 
-**Does NextGig Scout apply to jobs for me?**
+**Does CareerMate apply to jobs for me?**
 No. It finds and surfaces roles. You decide which to pursue and apply yourself.
 
 **Is my resume data sent somewhere?**
 Your data stays between you and Claude. It is not stored, indexed, or shared with employers. Claude processes it in the conversation and that is it.
 
 **Can I use this if I am not in tech?**
-Yes. NextGig Scout works for any background. The skill adjacency logic is universal. If you are a nurse, a teacher, a marketer, or an accountant, it will still map your skills to roles you are missing.
+Yes. CareerMate works for any background. The skill adjacency logic is universal. If you are a nurse, a teacher, a marketer, or an accountant, it will still map your skills to roles you are missing.
 
 **How often should I run it?**
 Weekly is a good cadence. New roles get posted constantly. Running it fresh each week catches postings from the last 7 days.

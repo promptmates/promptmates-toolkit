@@ -1,6 +1,6 @@
-# Getting Started: GitHub + SDI Scout
+# Getting Started: GitHub + SkillsMate
 
-This guide gets SDI Scout running in your Claude Code. Two install options: let Claude do it (2 minutes) or do it yourself step by step.
+This guide gets SkillsMate running in your Claude Code. Two install options: let Claude do it (2 minutes) or do it yourself step by step.
 
 ---
 
@@ -18,7 +18,7 @@ You need Claude Code installed and a project folder open. If you do not have tha
 This is the fastest way. Paste the following message into Claude Code exactly as written:
 
 ```
-Install the SDI Scout skill from https://github.com/promptmates/claude-skills and help me set up the context files. Walk me through it.
+Install the SkillsMate skill from https://github.com/promptmates/claude-skills and help me set up the context files. Walk me through it.
 ```
 
 Claude will:
@@ -28,7 +28,7 @@ Claude will:
 4. Ask you questions about your company to generate your context files (company positioning, communication style, output rules)
 5. Save those context files in a `context/` folder
 
-When it is done, type `/sdi-scout` to test it. Paste a JD and you should get all 4 outputs.
+When it is done, type `/skillsmate` to test it. Paste a JD and you should get all 4 outputs.
 
 That is it. You are done. The rest of this guide is only if you want to do it manually.
 
@@ -66,14 +66,14 @@ Bookmark this. All PromptMates shared skills live here.
 
 ---
 
-### Part 3: Download SDI Scout
+### Part 3: Download SkillsMate
 
 1. Go to https://github.com/promptmates/claude-skills
 2. Click the green "Code" button (near the top right of the file list)
 3. Click "Download ZIP"
 4. Find the downloaded file in your Downloads folder ("claude-skills-main.zip")
 5. Double-click to unzip (Mac does this automatically; Windows: right-click > "Extract All")
-6. Open the unzipped folder. Find the "sdi-scout" subfolder. That is what you need.
+6. Open the unzipped folder. Find the "skillsmate" subfolder. That is what you need.
 
 ---
 
@@ -110,15 +110,15 @@ mkdir context
 
 ### Part 5: Copy the skill file
 
-From the downloaded `claude-skills-main/sdi-scout/` folder:
-- Copy `skills/sdi-scout.md` into your project's `.claude/skills/` folder
+From the downloaded `claude-skills-main/skillsmate/` folder:
+- Copy `skills/skillsmate.md` into your project's `.claude/skills/` folder
 
 Your project should now look like:
 ```
 my-recruiting-workspace/
   .claude/
     skills/
-      sdi-scout.md    <-- this makes /sdi-scout work
+      skillsmate.md    <-- this makes /skillsmate work
   context/
       (empty for now)
 ```
@@ -127,9 +127,9 @@ my-recruiting-workspace/
 
 ### Part 6: Create your context files
 
-SDI Scout needs to know about YOUR company. You need 3 files in your `context/` folder.
+SkillsMate needs to know about YOUR company. You need 3 files in your `context/` folder.
 
-The download includes examples showing you the format. They are in `claude-skills-main/sdi-scout/context/`.
+The download includes examples showing you the format. They are in `claude-skills-main/skillsmate/context/`.
 
 **File 1: company-context.md**
 1. Open `company-context-example.md` from the download (any text editor works)
@@ -162,7 +162,7 @@ The download includes examples showing you the format. They are in `claude-skill
 my-recruiting-workspace/
   .claude/
     skills/
-      sdi-scout.md
+      skillsmate.md
   context/
     company-context.md
     tone-of-voice.md
@@ -174,7 +174,7 @@ my-recruiting-workspace/
 ### Part 7: Test It
 
 1. Open Claude Code in your project folder
-2. Type: `/sdi-scout`
+2. Type: `/skillsmate`
 3. Claude asks for a JD or skill cluster
 4. Paste a real JD you are working on
 5. Wait about a minute (it fetches live career page data)
@@ -184,12 +184,12 @@ If it works, you are done.
 
 ---
 
-## Using SDI Scout Day to Day
+## Using SkillsMate Day to Day
 
 | What you want | What to type |
 |---|---|
-| Run SDI for a role you have a JD for | `/sdi-scout` then paste the JD |
-| Run SDI for a skill without a full JD | "SDI scout for [skill name]" (e.g., "SDI scout for machine learning infrastructure") |
+| Run SkillsMate for a role you have a JD for | `/skillsmate` then paste the JD |
+| Run SkillsMate for a skill without a full JD | "SkillsMate for [skill name]" (e.g., "SkillsMate for machine learning infrastructure") |
 | Find where a specific talent type lives | "Where is [skill] talent concentrated?" |
 | Target companies for a role you just pasted | "Who else is hiring for this?" |
 
@@ -197,8 +197,8 @@ If it works, you are done.
 
 ## Troubleshooting
 
-**"Claude does not recognize /sdi-scout"**
-- Make sure the file is named exactly `sdi-scout.md` (not `sdi-scout.md.txt` or `SDI-Scout.md`)
+**"Claude does not recognize /skillsmate"**
+- Make sure the file is named exactly `skillsmate.md` (not `skillsmate.md.txt` or `SkillsMate-Scout.md`)
 - Make sure it is in `.claude/skills/` (with the dot on `.claude`)
 - Make sure you launched Claude Code from your project folder
 - On Mac: press Cmd+Shift+. in Finder to see hidden folders
@@ -212,21 +212,21 @@ If it works, you are done.
 - Windows: File Explorer > View > Show > Hidden Items
 
 **"I get an error about WebFetch or tools"**
-- SDI Scout needs WebFetch to pull career page data. If Claude asks to approve WebFetch access, click Allow.
+- SkillsMate needs WebFetch to pull career page data. If Claude asks to approve WebFetch access, click Allow.
 
 ---
 
-## Updating SDI Scout Later
+## Updating SkillsMate Later
 
 When a new version is released:
 1. Go to https://github.com/promptmates/claude-skills
 2. Download the ZIP again (green Code button)
-3. Copy the new `sdi-scout/skills/sdi-scout.md` into your `.claude/skills/` folder, replacing the old one
+3. Copy the new `skillsmate/skills/skillsmate.md` into your `.claude/skills/` folder, replacing the old one
 4. Your context files stay the same
 
 Or paste this into Claude Code:
 ```
-Update SDI Scout from https://github.com/promptmates/claude-skills
+Update SkillsMate from https://github.com/promptmates/claude-skills
 ```
 
 ---
@@ -241,4 +241,4 @@ Update SDI Scout from https://github.com/promptmates/claude-skills
 | Context files | Files that tell Claude about your company so output is specific to you. |
 | WebFetch | A tool Claude uses to visit websites and pull data (like career pages). |
 | Boolean string | A search query using AND/OR/NOT logic for LinkedIn Recruiter. |
-| SDI Score | A 0-100 number showing how intensely a company is hiring a specific skill. |
+| SkillsMate Score | A 0-100 number showing how intensely a company is hiring a specific skill. |

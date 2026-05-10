@@ -1,26 +1,26 @@
 ---
-name: nextgig-scout
+name: careermate
 description: Turn a resume or skill profile into a ranked list of open roles you might be missing. Produces an expanded skill map, live role matches from public ATS boards, adjacency discoveries, and a personalized search plan with Boolean strings.
 user-invocable: true
 ---
 
-# NextGig Scout (Job Search Skills Density Index)
+# CareerMate (Job Search Skills Density Index)
 
-The inverse of SDI Scout. Instead of "here's a role, find me candidates," this is "here's a candidate, find me roles." Identifies open positions across public ATS boards that match your core skills AND adjacent skills you may not be searching for.
+The inverse of SkillsMate. Instead of "here's a role, find me candidates," this is "here's a candidate, find me roles." Identifies open positions across public ATS boards that match your core skills AND adjacent skills you may not be searching for.
 
 ## When to Use
 
 Trigger when user says:
-- "/nextgig-scout"
+- "/careermate"
 - "Find roles for me"
 - "What jobs match my background?"
 - "What else should I be searching for?"
-- "Run NextGig Scout"
+- "Run CareerMate"
 - Pastes a resume and asks about job matches or search strategy
 
 ## Core Principle
 
-NextGig Scout is universal. It works for any background, any industry, any career stage. It assumes nothing about what you "should" want and asks instead.
+CareerMate is universal. It works for any background, any industry, any career stage. It assumes nothing about what you "should" want and asks instead.
 
 ## Setup
 

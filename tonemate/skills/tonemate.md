@@ -1,17 +1,17 @@
 ---
-name: tone-scout
+name: tonemate
 description: Pull real writing samples from Gmail, analyze communication patterns across audiences, and generate a tone of voice file that makes AI write like you instead of a robot. Uses Gmail MCP for email access.
 user-invocable: true
 ---
 
-# Tone Scout (Voice Calibration from Email)
+# ToneMate (Voice Calibration from Email)
 
 Reads your sent emails via Gmail MCP, identifies how you actually write (not how you think you write), and produces a detailed tone of voice guide with audience-specific registers. The output file makes any AI tool write in your authentic voice.
 
 ## When to Use
 
 Trigger when user says:
-- "/tone-scout"
+- "/tonemate"
 - "Build my tone of voice"
 - "Analyze how I write"
 - "Make AI sound like me"
@@ -20,7 +20,7 @@ Trigger when user says:
 
 ## Core Principle
 
-Your real emails are the ground truth. What you actually write matters more than what you think you write. Tone Scout reads your sent messages, maps your distinct voices by audience, and documents the patterns so AI can replicate them.
+Your real emails are the ground truth. What you actually write matters more than what you think you write. ToneMate reads your sent messages, maps your distinct voices by audience, and documents the patterns so AI can replicate them.
 
 ## Prerequisites
 

@@ -1,6 +1,6 @@
-# Getting Started: Tone Scout
+# Getting Started: ToneMate
 
-This guide gets Tone Scout running in your Claude Code. Two options: let Claude do it (fast) or do it yourself step by step.
+This guide gets ToneMate running in your Claude Code. Two options: let Claude do it (fast) or do it yourself step by step.
 
 ---
 
@@ -19,7 +19,7 @@ If you do not have a Gmail MCP set up, you will need to do that first. Search "G
 Paste this into Claude Code:
 
 ```
-Install the Tone Scout skill from https://github.com/promptmates/claude-skills and run it. My work email domain is [YOUR DOMAIN].
+Install the ToneMate skill from https://github.com/promptmates/claude-skills and run it. My work email domain is [YOUR DOMAIN].
 ```
 
 Replace `[YOUR DOMAIN]` with your actual email domain (e.g., acme.com).
@@ -48,13 +48,13 @@ That is it. The rest of this guide is for manual setup.
 
 ---
 
-### Part 2: Download Tone Scout
+### Part 2: Download ToneMate
 
 1. Go to https://github.com/promptmates/claude-skills
 2. Click the green "Code" button
 3. Click "Download ZIP"
 4. Unzip the downloaded file
-5. Find the `tone-scout` folder inside
+5. Find the `tonemate` folder inside
 
 ---
 
@@ -86,7 +86,7 @@ mkdir personal_context
 
 | Copy this file | To this location |
 |---|---|
-| `skills/tone-scout.md` | `your-project/.claude/skills/tone-scout.md` |
+| `skills/tonemate.md` | `your-project/.claude/skills/tonemate.md` |
 | `context/guardrails-example.md` | `your-project/context/guardrails.md` (rename it) |
 
 Your project should look like:
@@ -94,7 +94,7 @@ Your project should look like:
 your-project/
   .claude/
     skills/
-      tone-scout.md       <-- makes /tone-scout work
+      tonemate.md       <-- makes /tonemate work
   context/
     guardrails.md
   personal_context/
@@ -105,7 +105,7 @@ your-project/
 
 ### Part 5: Verify Gmail MCP works
 
-Before running Tone Scout, verify your Gmail MCP is connected. In Claude Code, try:
+Before running ToneMate, verify your Gmail MCP is connected. In Claude Code, try:
 
 ```
 Search my Gmail for recent sent messages
@@ -120,7 +120,7 @@ If Claude can search your email, you are good. If it says the tool is not availa
 In Claude Code, type:
 
 ```
-/tone-scout
+/tonemate
 ```
 
 Claude will ask:
@@ -169,7 +169,7 @@ Each register has its own greeting, closing, structure, and formality level base
 
 ### Keep it current
 
-Your writing evolves. Run Tone Scout again in 6-12 months, or manually update the file when:
+Your writing evolves. Run ToneMate again in 6-12 months, or manually update the file when:
 - You get a new job or change roles
 - You notice AI getting your voice wrong consistently
 - Your audience changes (new team, new leadership)
@@ -178,8 +178,8 @@ Your writing evolves. Run Tone Scout again in 6-12 months, or manually update th
 
 ## Troubleshooting
 
-**"Claude does not recognize /tone-scout"**
-- File must be named exactly `tone-scout.md` in `.claude/skills/`
+**"Claude does not recognize /tonemate"**
+- File must be named exactly `tonemate.md` in `.claude/skills/`
 - Launch Claude Code from your project folder (the one containing `.claude/`)
 
 **"Gmail search returns no results"**

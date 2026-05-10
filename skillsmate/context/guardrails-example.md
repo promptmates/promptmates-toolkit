@@ -10,7 +10,7 @@
 
 ## Scope Rules
 
-- Do not add companies to the SDI output that have zero matching evidence
+- Do not add companies to the SkillsMate output that have zero matching evidence
 - Do not infer hiring intent from product announcements alone (a new product does not guarantee they are hiring for it)
 - Do not include candidate names, LinkedIn profiles, or PII in any output
 

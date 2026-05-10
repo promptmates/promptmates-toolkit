@@ -1,6 +1,6 @@
 # Competitor Registry Template
-# Fill in companies you want to track for SDI enrichment.
-# This is OPTIONAL. SDI Scout works without it using live web data.
+# Fill in companies you want to track for SkillsMate enrichment.
+# This is OPTIONAL. SkillsMate works without it using live web data.
 # Having this file provides bonus context when the skill cluster overlaps with your tracked competitors.
 
 # ATS types: greenhouse, lever, workday, generic

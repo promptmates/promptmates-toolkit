@@ -1,19 +1,19 @@
-[sdi-scout.md](https://github.com/user-attachments/files/27541615/sdi-scout.md)
+[skillsmate.md](https://github.com/user-attachments/files/27541615/skillsmate.md)
 ---
-name: sdi-scout
+name: skillsmate
 description: Turn a JD or skill cluster into a ranked Skills Density Index showing which companies are actively hiring that talent. Produces Intake JSON, Signal Pack, Evidence Annex, and a tactical Battle Card with Booleans and sourcing plan.
 user-invocable: true
 ---
 
-# SDI Scout (Skills Density Index)
+# SkillsMate (Skills Density Index)
 
-Identify where specific skill clusters are concentrated across the hiring market. Produces 4 outputs inline: Intake JSON, SDI Signal Pack, Evidence Annex, and a Human Battle Card for sourcing execution.
+Identify where specific skill clusters are concentrated across the hiring market. Produces 4 outputs inline: Intake JSON, SkillsMate Signal Pack, Evidence Annex, and a Human Battle Card for sourcing execution.
 
 ## When to Use
 
 Trigger when user says:
-- "/sdi-scout"
-- "SDI scout for [role]"
+- "/skillsmate"
+- "SkillsMate for [role]"
 - "Skills density index for [skill]"
 - "Where is [skill] talent concentrated?"
 - "Where should we poach from for this role?"
@@ -22,7 +22,7 @@ Trigger when user says:
 
 ## Core Principle
 
-SDI Scout is universal. It works for any role, any industry, any skill cluster.
+SkillsMate is universal. It works for any role, any industry, any skill cluster.
 
 ## Setup
 
@@ -72,7 +72,7 @@ Based on extracted skill seeds:
 
 If `context/competitor-registry.yaml` exists and contains companies relevant to this skill cluster, use it to supplement evidence with any pre-tracked data.
 
-### Phase 3: SDI Scoring
+### Phase 3: SkillsMate Scoring
 
 Score each company on a 0-100 scale using these weighted signals:
 
@@ -87,8 +87,8 @@ Score each company on a 0-100 scale using these weighted signals:
 | Agency Penalty | -0.05 | Apply if: staffing agency domain detected in posting source |
 
 **Categorization thresholds:**
-- **Hotbeds:** SDI >= 70, has roles posted within last 45 days, volume >= 3 matching roles
-- **Reservoirs:** SDI 40-69, steady posting cadence, roles currently active
+- **Hotbeds:** SkillsMate >= 70, has roles posted within last 45 days, volume >= 3 matching roles
+- **Reservoirs:** SkillsMate 40-69, steady posting cadence, roles currently active
 - **New Entrants:** First posting in this skill cluster appeared within last 60 days (new demand signal)
 
 Target: 5 hotbeds, 5 reservoirs, 5 new entrants (best-effort; fewer is acceptable if data is thin)
@@ -118,7 +118,7 @@ Fenced json block:
 }
 ```
 
-#### Output 2: `### 2) SDI_SIGNAL_PACK (JSON)`
+#### Output 2: `### 2) SKILLSMATE_SIGNAL_PACK (JSON)`
 
 Fenced json block:
 ```json
@@ -130,7 +130,7 @@ Fenced json block:
     "hotbeds": [
       {
         "company": "string",
-        "sdi_score": 0.0,
+        "skillsmate_score": 0.0,
         "size_norm_factor": 0.0,
         "reasons": ["string"],
         "likely_titles": ["string"],
@@ -145,7 +145,7 @@ Fenced json block:
 }
 ```
 
-#### Output 3: `### 3) SDI Evidence & Scoring Annex (JSON)`
+#### Output 3: `### 3) SkillsMate Evidence & Scoring Annex (JSON)`
 
 Fenced json block with per-company deep dive:
 ```json
@@ -199,7 +199,7 @@ Five sections:
 
 **Section 2: Ranked Company Intelligence Table**
 
-| Rank | Company | SDI Score | Category | Matching Roles | Comp Range | Signal Summary | Approach Angle |
+| Rank | Company | SkillsMate Score | Category | Matching Roles | Comp Range | Signal Summary | Approach Angle |
 |------|---------|-----------|----------|----------------|------------|----------------|----------------|
 
 **Section 3: Boolean Search Strings**
