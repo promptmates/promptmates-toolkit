@@ -13,6 +13,7 @@ Skills are markdown files that give Claude Code specialized capabilities. Drop a
 | **SkillsMate** | `/skillsmate` | Paste a JD, get back a ranked list of companies hiring the same talent, Boolean strings, and a tactical sourcing plan |
 | **CareerMate** | `/careermate` | Paste a resume, get back expanded titles you should search, live role matches from ATS boards, and a personalized search plan |
 | **ToneMate** | `/tonemate` | Reads your sent emails via Gmail MCP, maps your audience registers, and generates a tone of voice file that makes AI write like you |
+| **IntelMate** | `/intelmate` | Scrapes competitor career pages, classifies roles, extracts comp data, scores talent brands, and builds recruiting battle cards |
 
 ## Getting Started
 
@@ -20,6 +21,7 @@ New to GitHub or Claude Code? Each skill has its own Getting Started guide:
 - [SkillsMate Getting Started](skillsmate/Getting%20Started%20Guide%20-%20PromptMates%20GitHub.md) (for recruiters sourcing talent)
 - [CareerMate Getting Started](careermate/Getting%20Started%20Guide.md) (for job seekers finding roles)
 - [ToneMate Getting Started](tonemate/Getting%20Started%20Guide.md) (for anyone who wants AI to write in their voice)
+- [IntelMate Getting Started](intelmate/Getting%20Started%20Guide.md) (for competitive intelligence from job postings)
 
 ## Quick Install (if you already know what you are doing)
 
@@ -56,6 +58,14 @@ claude-skills/
     skills/
       tonemate.md      (the skill file you install)
     context/
+      guardrails-example.md
+  intelmate/
+    README.md            (detailed docs for IntelMate)
+    Getting Started Guide.md
+    skills/
+      intelmate.md     (the skill file you install)
+    context/
+      company-profile-example.md
       guardrails-example.md
 ```
 
