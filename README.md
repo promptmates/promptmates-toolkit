@@ -15,6 +15,14 @@ Skills are markdown files that give Claude Code specialized capabilities. Drop a
 | **ToneMate** | `/tonemate` | Reads your sent emails via Gmail MCP, maps your audience registers, and generates a tone of voice file that makes AI write like you |
 | **IntelMate** | `/intelmate` | Scrapes competitor career pages, classifies roles, extracts comp data, scores talent brands, and builds recruiting battle cards |
 
+## Rules
+
+Not everything is a skill. Some things are behavioral guardrails that run in the background on every interaction.
+
+| Rules | Install Location | What It Does |
+|---|---|---|
+| **RulesMate** | `.claude/rules/` | Five TA-specific behavioral principles that stop your AI from hallucinating candidate data, over-editing JDs, and giving recommendations with no evidence. Inspired by the [Karpathy Guidelines](https://github.com/multica-ai/andrej-karpathy-skills). |
+
 ## Getting Started
 
 New to GitHub or Claude Code? Each skill has its own Getting Started guide:
@@ -22,13 +30,20 @@ New to GitHub or Claude Code? Each skill has its own Getting Started guide:
 - [CareerMate Getting Started](careermate/Getting%20Started%20Guide.md) (for job seekers finding roles)
 - [ToneMate Getting Started](tonemate/Getting%20Started%20Guide.md) (for anyone who wants AI to write in their voice)
 - [IntelMate Getting Started](intelmate/Getting%20Started%20Guide.md) (for competitive intelligence from job postings)
+- [RulesMate Getting Started](rulesmate/Getting%20Started%20Guide.md) (for TA-specific AI guardrails)
 
 ## Quick Install (if you already know what you are doing)
 
+**For skills:**
 1. Download this repo (green Code button > Download ZIP)
 2. Copy the skill's `.md` file into your `.claude/skills/` folder
 3. Create the required context files in a `context/` folder (examples included)
 4. Run the slash command in Claude Code
+
+**For rules (RulesMate):**
+1. Download this repo
+2. Copy `rulesmate/rules/rulesmate-ta-guidelines.md` into your `.claude/rules/` folder
+3. That's it. Rules load automatically on every interaction.
 
 ## Repo Structure
 
@@ -67,6 +82,11 @@ claude-skills/
     context/
       company-profile-example.md
       guardrails-example.md
+  rulesmate/
+    README.md            (detailed docs for RulesMate)
+    Getting Started Guide.md
+    rules/
+      rulesmate-ta-guidelines.md  (the rules file you install)
 ```
 
 ## Contributing
