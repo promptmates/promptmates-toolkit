@@ -50,10 +50,12 @@ export function Slide8() {
             </div>
             <h3 className="font-semibold text-gray-900 mb-2">Open the Custom GPT</h3>
             <p className="text-sm text-gray-500 mb-4">
-              A chatbot that interviews you across 5 deep sections and produces your complete context sheet.
+              A guided interview across 5 deep sections. Produces your complete context sheet automatically.
             </p>
             <a
-              href="#"
+              href="https://chatgpt.com/g/g-6a160e4a7338819189469f127b1fbf19-promptmates-context-builder"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center w-full px-4 py-2 bg-[#22c55e] text-white rounded-lg font-medium hover:bg-[#16a34a] transition-colors"
             >
               Open GPT
@@ -70,7 +72,9 @@ export function Slide8() {
               Same interview, same output, built for Google Workspace users.
             </p>
             <a
-              href="#"
+              href="https://gemini.google.com/gem/16KVhjRpv_z-UaGtKBp6Nh5qO2T8WCbUo"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center w-full px-4 py-2 bg-[#22c55e] text-white rounded-lg font-medium hover:bg-[#16a34a] transition-colors"
             >
               Open Gem
@@ -82,9 +86,9 @@ export function Slide8() {
             <div className="mb-4">
               <Badge>Claude</Badge>
             </div>
-            <h3 className="font-semibold text-gray-900 mb-2">Copy the Interview Prompt</h3>
+            <h3 className="font-semibold text-gray-900 mb-2">Create a Project</h3>
             <p className="text-sm text-gray-500 mb-4">
-              Paste this into any Claude conversation and it runs the same process.
+              Create a Claude Project called &quot;TalentOps.&quot; Add guardrails to Instructions. Paste the prompt below to run the interview.
             </p>
             <button
               onClick={handleCopy}
@@ -102,6 +106,9 @@ export function Slide8() {
                 </>
               )}
             </button>
+            <p className="text-xs text-gray-400 mt-3 text-center">
+              1. Create a Project → 2. Paste guardrails into Instructions → 3. Start a chat and paste this prompt
+            </p>
           </div>
         </div>
 
