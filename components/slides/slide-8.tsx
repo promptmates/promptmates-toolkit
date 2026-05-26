@@ -52,14 +52,20 @@ export function Slide8() {
             <p className="text-sm text-gray-500 mb-4 flex-grow">
               A guided interview across 5 deep sections. Produces your complete context sheet automatically.
             </p>
-            <a
-              href="https://chatgpt.com/g/g-6a160e4a7338819189469f127b1fbf19-promptmates-context-builder"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-full px-4 py-2 bg-[#22c55e] text-white rounded-lg font-medium hover:bg-[#16a34a] transition-colors"
-            >
-              Open GPT
-            </a>
+            <div className="mt-auto">
+              <a
+                href="https://chatgpt.com/g/g-6a160e4a7338819189469f127b1fbf19-promptmates-context-builder"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-full px-4 py-2 bg-[#22c55e] text-white rounded-lg font-medium hover:bg-[#16a34a] transition-colors"
+              >
+                Open GPT
+              </a>
+              {/* Spacer to match Claude card's instructions height */}
+              <p className="text-xs text-transparent mt-3 text-center select-none" aria-hidden="true">
+                &nbsp;
+              </p>
+            </div>
           </div>
 
           {/* Gemini */}
@@ -71,14 +77,20 @@ export function Slide8() {
             <p className="text-sm text-gray-500 mb-4 flex-grow">
               Same interview, same output, built for Google Workspace users.
             </p>
-            <a
-              href="https://gemini.google.com/gem/16KVhjRpv_z-UaGtKBp6Nh5qO2T8WCbUo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-full px-4 py-2 bg-[#22c55e] text-white rounded-lg font-medium hover:bg-[#16a34a] transition-colors"
-            >
-              Open Gem
-            </a>
+            <div className="mt-auto">
+              <a
+                href="https://gemini.google.com/gem/16KVhjRpv_z-UaGtKBp6Nh5qO2T8WCbUo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-full px-4 py-2 bg-[#22c55e] text-white rounded-lg font-medium hover:bg-[#16a34a] transition-colors"
+              >
+                Open Gem
+              </a>
+              {/* Spacer to match Claude card's instructions height */}
+              <p className="text-xs text-transparent mt-3 text-center select-none" aria-hidden="true">
+                &nbsp;
+              </p>
+            </div>
           </div>
 
           {/* Claude */}
@@ -90,25 +102,27 @@ export function Slide8() {
             <p className="text-sm text-gray-500 mb-4 flex-grow">
               Create a Claude Project called &quot;TalentOps.&quot; Add guardrails to Instructions. Paste the prompt below to run the interview.
             </p>
-            <button
-              onClick={handleCopy}
-              className="inline-flex items-center justify-center w-full gap-2 px-4 py-2 bg-[#22c55e] text-white rounded-lg font-medium hover:bg-[#16a34a] transition-colors"
-            >
-              {copied ? (
-                <>
-                  <Check className="w-4 h-4" />
-                  Copied!
-                </>
-              ) : (
-                <>
-                  <Copy className="w-4 h-4" />
-                  Copy Prompt
-                </>
-              )}
-            </button>
-            <p className="text-xs text-gray-400 mt-3 text-center">
-              1. Create a Project → 2. Paste guardrails into Instructions → 3. Start a chat and paste this prompt
-            </p>
+            <div className="mt-auto">
+              <button
+                onClick={handleCopy}
+                className="inline-flex items-center justify-center w-full gap-2 px-4 py-2 bg-[#22c55e] text-white rounded-lg font-medium hover:bg-[#16a34a] transition-colors"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-4 h-4" />
+                    Copied!
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4" />
+                    Copy Prompt
+                  </>
+                )}
+              </button>
+              <p className="text-xs text-gray-400 mt-3 text-center">
+                1. Create a Project → 2. Paste guardrails into Instructions → 3. Start a chat and paste this prompt
+              </p>
+            </div>
           </div>
         </div>
 
