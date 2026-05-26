@@ -44,12 +44,12 @@ export function Slide8() {
 
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           {/* ChatGPT */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
+          <div className="bg-white rounded-xl border border-gray-200 p-6 flex flex-col">
             <div className="mb-4">
               <Badge>ChatGPT</Badge>
             </div>
             <h3 className="font-semibold text-gray-900 mb-2">Open the Custom GPT</h3>
-            <p className="text-sm text-gray-500 mb-4">
+            <p className="text-sm text-gray-500 mb-4 flex-grow">
               A guided interview across 5 deep sections. Produces your complete context sheet automatically.
             </p>
             <a
@@ -63,12 +63,12 @@ export function Slide8() {
           </div>
 
           {/* Gemini */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
+          <div className="bg-white rounded-xl border border-gray-200 p-6 flex flex-col">
             <div className="mb-4">
               <Badge>Gemini</Badge>
             </div>
             <h3 className="font-semibold text-gray-900 mb-2">Open the Gem</h3>
-            <p className="text-sm text-gray-500 mb-4">
+            <p className="text-sm text-gray-500 mb-4 flex-grow">
               Same interview, same output, built for Google Workspace users.
             </p>
             <a
@@ -82,12 +82,12 @@ export function Slide8() {
           </div>
 
           {/* Claude */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
+          <div className="bg-white rounded-xl border border-gray-200 p-6 flex flex-col">
             <div className="mb-4">
               <Badge>Claude</Badge>
             </div>
             <h3 className="font-semibold text-gray-900 mb-2">Create a Project</h3>
-            <p className="text-sm text-gray-500 mb-4">
+            <p className="text-sm text-gray-500 mb-4 flex-grow">
               Create a Claude Project called &quot;TalentOps.&quot; Add guardrails to Instructions. Paste the prompt below to run the interview.
             </p>
             <button
