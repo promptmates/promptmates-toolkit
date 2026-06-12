@@ -8,16 +8,16 @@ Works great for quick reactions to Slack messages, pulling text from images, deb
 
 ## What You Get
 
-One command that turns screenshots into actionable context:
+One command. One install. The number is just an argument, not a separate skill.
 
-| Command | What it does |
-|---------|-------------|
-| `/ss` | Grabs the most recent screenshot (default) |
+| You type | What happens |
+|----------|-------------|
+| `/ss` | Grabs the 1 most recent screenshot |
 | `/ss 2` | Grabs the 2 most recent screenshots |
-| `/ss 5` | Grabs the 5 most recent screenshots |
-| `/ss N` | Grabs the N most recent screenshots |
+| `/ss 7` | Grabs the 7 most recent screenshots |
+| `/ss 20` | Grabs the 20 most recent screenshots |
 
-No need to create separate skills for different counts. One skill, one argument.
+Any number works. You never create additional skills. `/ss` handles everything.
 
 ---
 
@@ -90,7 +90,9 @@ That's it. You're done.
 
 ## How It Works
 
-Claude Code slash commands are markdown files in `~/.claude/commands/`. The filename becomes the command name. The file contents become the prompt. `$ARGUMENTS` is a built-in variable that captures whatever you type after the command name — so `/ss 4` passes `4` as the argument.
+Claude Code slash commands are markdown files in `~/.claude/commands/`. The filename becomes the command name. The file contents become the prompt. `$ARGUMENTS` is a built-in variable that captures whatever you type after the command name.
+
+So `/ss 4` passes `4` as the argument. `/ss` with no number defaults to 1. You don't make `/ss2` or `/ss7` as separate skills. One file handles any count dynamically.
 
 That's the whole system. You can create any custom skill by dropping a `.md` file in that folder.
 
