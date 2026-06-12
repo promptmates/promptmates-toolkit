@@ -1,10 +1,10 @@
-# Claude Skills
+# PromptMates Toolkit
 
-The official repository for Claude Code skills from the PromptMates community.
+The official repository for Claude Code skills, rules, and utilities from the PromptMates community.
 
-## What Are Skills?
+## What's In Here?
 
-Skills are markdown files that give Claude Code specialized capabilities. Drop a skill file into your `.claude/skills/` folder and trigger it with a slash command or natural language. No coding required.
+Markdown files that give Claude Code specialized capabilities. Skills trigger with slash commands. Rules run in the background. Utilities are one-command installs that extend what Claude can do. No coding required.
 
 ## Available Skills
 
@@ -14,6 +14,7 @@ Skills are markdown files that give Claude Code specialized capabilities. Drop a
 | **CareerMate** | `/careermate` | Paste a resume, get back expanded titles you should search, live role matches from ATS boards, and a personalized search plan |
 | **ToneMate** | `/tonemate` | Reads your sent emails via Gmail MCP, maps your audience registers, and generates a tone of voice file that makes AI write like you |
 | **IntelMate** | `/intelmate` | Scrapes competitor career pages, classifies roles, extracts comp data, scores talent brands, and builds recruiting battle cards |
+| **ScreenMate** | `/ss` | Take a screenshot, type `/ss`, and Claude reads it, describes what it sees, and asks what you want to do with it |
 
 ## Rules
 
@@ -31,6 +32,7 @@ New to GitHub or Claude Code? Each skill has its own Getting Started guide:
 - [ToneMate Getting Started](tonemate/Getting%20Started%20Guide.md) (for anyone who wants AI to write in their voice)
 - [IntelMate Getting Started](intelmate/Getting%20Started%20Guide.md) (for competitive intelligence from job postings)
 - [RulesMate Getting Started](rulesmate/Getting%20Started%20Guide.md) (for TA-specific AI guardrails)
+- [ScreenMate Getting Started](screenmate/Getting%20Started%20Guide.md) (for screenshot-to-action in Claude Code)
 
 ## Quick Install (if you already know what you are doing)
 
@@ -45,10 +47,15 @@ New to GitHub or Claude Code? Each skill has its own Getting Started guide:
 2. Copy `rulesmate/rules/rulesmate-ta-guidelines.md` into your `.claude/rules/` folder
 3. That's it. Rules load automatically on every interaction.
 
+**For utilities (ScreenMate):**
+1. Download this repo
+2. Copy `screenmate/skills/ss.md` into `~/.claude/commands/`
+3. Set your screenshot folder (see [ScreenMate docs](screenmate/README.md))
+
 ## Repo Structure
 
 ```
-claude-skills/
+promptmates-toolkit/
   README.md              (you are here)
   skillsmate/
     README.md            (detailed docs for SkillsMate)
@@ -87,6 +94,11 @@ claude-skills/
     Getting Started Guide.md
     rules/
       rulesmate-ta-guidelines.md  (the rules file you install)
+  screenmate/
+    README.md            (detailed docs for ScreenMate)
+    Getting Started Guide.md
+    skills/
+      ss.md              (the command file you install)
 ```
 
 ## Contributing

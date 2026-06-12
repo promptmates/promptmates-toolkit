@@ -1,0 +1,1 @@
+Find the $ARGUMENTS most recent screenshot files in ~/Desktop/Screenshots (sort by modification time). If "$ARGUMENTS" is empty or not a number, default to 1. Read each file using the Read tool so I can see them. Briefly describe what you see in each and ask how I'd like to use them.
