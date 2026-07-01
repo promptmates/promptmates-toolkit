@@ -15,6 +15,7 @@ Markdown files that give Claude Code specialized capabilities. Skills trigger wi
 | **ToneMate** | `/tonemate` | Reads your sent emails via Gmail MCP, maps your audience registers, and generates a tone of voice file that makes AI write like you |
 | **IntelMate** | `/intelmate` | Scrapes competitor career pages, classifies roles, extracts comp data, scores talent brands, and builds recruiting battle cards |
 | **ScreenMate** | `/ss` | Take a screenshot, type `/ss`, and Claude reads it, describes what it sees, and asks what you want to do with it |
+| **TrailMate** | `/trailmate` | Agent receipt system for persistent task tracking. Leaves breadcrumbs so nothing evaporates between sessions. One glance shows what's moving, stuck, or waiting on you |
 
 ## Rules
 
@@ -33,6 +34,7 @@ New to GitHub or Claude Code? Each skill has its own Getting Started guide:
 - [IntelMate Getting Started](intelmate/Getting%20Started%20Guide.md) (for competitive intelligence from job postings)
 - [RulesMate Getting Started](rulesmate/Getting%20Started%20Guide.md) (for TA-specific AI guardrails)
 - [ScreenMate Getting Started](screenmate/Getting%20Started%20Guide.md) (for screenshot-to-action in Claude Code)
+- [TrailMate Getting Started](trailmate/Getting%20Started%20Guide.md) (for persistent task tracking across sessions)
 
 ## Quick Install (if you already know what you are doing)
 
@@ -99,6 +101,14 @@ promptmates-toolkit/
     Getting Started Guide.md
     skills/
       ss.md              (the command file you install)
+  trailmate/
+    README.md            (detailed docs for TrailMate)
+    Getting Started Guide.md
+    skills/
+      trailmate.md       (the skill file you install)
+    context/
+      queue-example.md   (starter queue with example tasks)
+      guardrails-example.md (optional behavior rules)
 ```
 
 ## Contributing
