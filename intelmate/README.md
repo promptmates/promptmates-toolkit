@@ -1,26 +1,23 @@
 # IntelMate
 
-**Your competitors' job postings are a public window into their strategy.** IntelMate reads them systematically: scrapes career pages, classifies every role, extracts compensation, scores talent brands, and builds battle cards for recruiting against them.
-
-Tell it who your competitors are and what you want to know. It does the rest.
+**Your competitors' job postings are a public window into their strategy. IntelMate reads them systematically.**
 
 ---
 
-## The Insight
+## Prerequisites
 
-Every open job posting is a signal:
-- What functions a company is investing in
-- Where they are expanding geographically
-- How they pay relative to market
-- What their employer brand looks like from the outside
-- Which roles they cannot fill (pain points you can exploit)
-- What their product roadmap looks like (inferred from engineering/product hires)
+| Platform | Compatible? | Notes |
+|----------|-------------|-------|
+| Claude Code CLI | Yes | Full functionality |
+| Claude Desktop | Yes | Full functionality |
+| VS Code / JetBrains | Yes | Full functionality |
+| Cloud Co-Work (browser) | Yes | Full functionality |
 
-Most companies track this manually, inconsistently, or not at all. IntelMate automates the entire cycle: collection, classification, scoring, and action.
+No MCP servers or local tools required. IntelMate works with web search and fetch capabilities built into Claude Code.
 
 ---
 
-## What You Can Get
+## What You Get
 
 | Deliverable | What it tells you |
 |-------------|-------------------|
@@ -38,59 +35,48 @@ Pick one deliverable, a few, or say "everything."
 
 ---
 
-## How It Works
+## Install (15 minutes, one time)
 
-### Step 1: Answer three questions
+### Step 1: Download IntelMate
 
-1. **Who are you?** (company, industry, headcount)
-2. **Who are your competitors?** (3-10 names)
-3. **What do you want?** (pick deliverables from the menu)
+1. Click the green **Code** button on this GitHub page
+2. Click **Download ZIP**
+3. Unzip the downloaded file
+4. Find the `intelmate` folder inside
 
-### Step 2: IntelMate scrapes their career pages
+### Step 2: Create the required folders
 
-It hits public ATS APIs (Greenhouse, Lever, Ashby, Workday) and career pages. No login required. No authentication. Just public job postings anyone can see.
+Inside your Claude Code project folder, create:
 
-### Step 3: Classify and enrich
-
-Every role gets:
-- Functional classification (12 areas: Engineering, Sales, R&D, Clinical, etc.)
-- Seniority level (Intern through C-Suite)
-- Location + remote flag
-- Compensation range (if disclosed)
-- Strategic keyword tags (AI/ML, new market, growth signal)
-- Days posted + repost detection
-
-### Step 4: Get your deliverables
-
-Scored, compared, and presented in the format you selected.
-
----
-
-## Setup
-
-### Prerequisites
-
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) installed
-- A project folder open in Claude Code
-
-### Install
-
-1. Download this repo (green Code button > Download ZIP)
-2. Copy `skills/intelmate.md` into your project's `.claude/skills/` folder
-3. Copy `context/company-profile-example.md` to `context/company-profile.md` and fill in your company info
-4. Copy `context/guardrails-example.md` to `context/guardrails.md`
-5. Run `/intelmate`
-
-Your project structure:
 ```
 your-project/
   .claude/
     skills/
-      intelmate.md
   context/
-    company-profile.md
-    guardrails.md
 ```
+
+On Mac, press Cmd+Shift+. in Finder to see hidden folders (the `.claude` folder starts with a dot).
+
+### Step 3: Copy the skill file
+
+From the downloaded folder, copy:
+- `intelmate/skills/intelmate.md` into your project's `.claude/skills/` folder
+
+### Step 4: Create your context files
+
+Copy `context/company-profile-example.md` to `context/company-profile.md` and fill in your company info (mission, headcount, EVP, comp ranges).
+
+Copy `context/guardrails-example.md` to `context/guardrails.md`.
+
+### Step 5: Run it
+
+Open Claude Code in your project folder and type:
+
+```
+/intelmate
+```
+
+Claude will ask who your competitors are and what deliverables you want.
 
 ---
 
@@ -104,19 +90,34 @@ your-project/
 | "Talent brand comparison" | Scorecard across your competitor set |
 | "What are my competitors hiring for?" | Full role inventory + strategic signals |
 
+### Tips for Best Results
+
+- **Fill in your company profile.** The more detail you provide (especially comp ranges and EVP), the better the battle cards and benchmarking.
+- **Start with 3-5 competitors.** More is fine, but each one adds scraping time.
+- **Include direct competitors AND aspirational peers.** Compare against who you compete with for talent, not just product competitors.
+- **Run it quarterly.** Hiring patterns shift. What was true 6 months ago may not be today.
+- **Use battle cards immediately.** Hand them to your recruiters before outreach calls.
+
 ---
 
-## Scoring Methodology
+## How It Works
 
-### Hiring Intensity
+### Collection Process
 
+1. **Answer three questions:** Who are you (company, industry, headcount), who are your competitors (3-10 names), and what do you want (pick deliverables from the menu).
+2. **IntelMate scrapes their career pages.** It hits public ATS APIs (Greenhouse, Lever, Ashby, Workday) and career pages. No login required. No authentication. Just public job postings anyone can see.
+3. **Classify and enrich.** Every role gets functional classification, seniority level, location + remote flag, compensation range (if disclosed), strategic keyword tags, and days-posted + repost detection.
+4. **Deliver.** Scored, compared, and presented in the format you selected.
+
+### Scoring Methodology
+
+**Hiring Intensity:**
 ```
 Hiring Rate = (Open Roles / Headcount) * 100
 ```
-
 A company with 50 open roles and 1,000 employees has a 5% hiring rate. Compare across your set to identify who's growing aggressively vs. holding steady.
 
-### Talent Brand Scorecard (0-100)
+**Talent Brand Scorecard (0-100):**
 
 | Signal | Weight | What it measures |
 |--------|--------|------------------|
@@ -166,9 +167,7 @@ A company with 50 open roles and 1,000 employees has a 5% hiring rate. Compare a
 | Associate / Junior | Associate, Junior, Entry |
 | Intern | Intern, Co-op |
 
----
-
-## Battle Cards
+### Battle Cards
 
 The most actionable deliverable. One card per competitor with:
 
@@ -181,19 +180,7 @@ The most actionable deliverable. One card per competitor with:
 
 Battle cards are built from data, not opinion. Every strength and weakness traces to observable posting patterns.
 
----
-
-## What IntelMate Does NOT Do
-
-- Access private or authenticated career portals
-- Scrape LinkedIn profiles or reference individual employees
-- Use Glassdoor, Indeed, or other aggregator salary estimates
-- Speculate beyond what postings support (inferences are labeled)
-- Guarantee completeness (some companies post on platforms that cannot be scraped)
-
----
-
-## ATS Platforms Supported
+### ATS Platforms Supported
 
 | Platform | Method | Coverage |
 |----------|--------|----------|
@@ -206,15 +193,13 @@ Battle cards are built from data, not opinion. Every strength and weakness trace
 
 If a company uses an unsupported or gated ATS, IntelMate will report which competitors could not be accessed rather than silently excluding them.
 
----
+### What IntelMate Does NOT Do
 
-## Tips for Best Results
-
-- **Fill in your company profile.** The more detail you provide (especially comp ranges and EVP), the better the battle cards and benchmarking.
-- **Start with 3-5 competitors.** More is fine, but each one adds scraping time.
-- **Include direct competitors AND aspirational peers.** Compare against who you compete with for talent, not just product competitors.
-- **Run it quarterly.** Hiring patterns shift. What was true 6 months ago may not be today.
-- **Use battle cards immediately.** Hand them to your recruiters before outreach calls.
+- Access private or authenticated career portals
+- Scrape LinkedIn profiles or reference individual employees
+- Use Glassdoor, Indeed, or other aggregator salary estimates
+- Speculate beyond what postings support (inferences are labeled)
+- Guarantee completeness (some companies post on platforms that cannot be scraped)
 
 ---
 
@@ -239,20 +224,10 @@ If a company uses an unsupported or gated ATS, IntelMate will report which compe
 
 ---
 
-## Contributing
-
-PRs welcome. Especially:
-- New ATS platform support
-- Better classification patterns for non-tech industries
-- Regional/country-specific pay transparency handling
-- Improved strategic signal detection
-
----
-
 ## License
 
-MIT. Use it, modify it, share it.
+MIT
 
 ---
 
-Built by [PromptMates](https://promptmates.ai). Questions: jason@promptmates.ai
+*Part of the [PromptMates Toolkit](https://github.com/promptmates/promptmates-toolkit). Questions: jason@promptmates.ai*

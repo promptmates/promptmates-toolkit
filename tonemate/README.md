@@ -1,35 +1,37 @@
 # ToneMate
 
-**Your AI writes like a robot because it has never read how you actually write.** ToneMate fixes that. It reads your sent emails, maps your distinct voices (you write differently to your team than your boss than a vendor), and produces a tone of voice file that makes AI sound like you.
+**Your AI writes like a robot because it has never read how you actually write. ToneMate fixes that.**
 
 ---
 
-## The Problem
+## Prerequisites
 
-Every AI tool writes in the same generic voice. Helpful, polished, and obviously not human. You can prompt it to "be more casual" or "write like a senior leader," but it still sounds like AI pretending to be casual or pretending to be a leader.
+| Platform | Compatible? | Notes |
+|----------|-------------|-------|
+| Claude Code CLI | Yes | Requires Gmail MCP server running locally |
+| Claude Desktop | Yes | Requires Gmail MCP server running locally |
+| VS Code / JetBrains | No | Gmail MCP requires local server process |
+| Cloud Co-Work (browser) | No | Cannot run local MCP servers in browser |
 
-The fix is simple: show it how you actually write. Not how you think you write. How you actually write, based on real emails you have sent.
+**Required:** A Gmail MCP server connected to Claude Code with search and read permissions. Common options:
+- Google Workspace MCP (official, most common)
+- Gmail MCP (standalone implementations)
+- Any MCP server with `gmail_search_emails` and `gmail_get_email` tools (or equivalently named)
 
-## What ToneMate Does
-
-1. **Reads your sent emails** via Gmail MCP (15-20 messages across different audiences)
-2. **Maps your audience registers** - most people have 2-4 distinct voices depending on who they are writing to
-3. **Documents patterns** across 10 categories: vocabulary, punctuation, sentence structure, how you deliver bad news, how you delegate, how you close messages
-4. **Compares self-report vs. reality** - what you think your style is vs. what your emails actually show
-5. **Generates a tone of voice file** with real examples from your writing that any AI tool can use
+If you do not have a Gmail MCP set up yet, search "Gmail MCP server Claude Code" for installation guides. Setup typically takes 10-15 minutes and requires a Google OAuth consent screen.
 
 ---
 
 ## What You Get
 
-A single markdown file (`tone-of-voice.md`) that contains:
+A single markdown file (`tone-of-voice.md`) containing your complete writing profile:
 
 | Section | What it captures |
 |---------|-----------------|
 | Audience Registers | Your distinct voices mapped by audience (team, leadership, external), with greeting/closing/formality patterns |
 | Vocabulary | Words you use, words you never use, your greeting and closing inventories |
 | Grammar | Active/passive, contractions, fragments, serial comma preference |
-| Punctuation | Your quirks (double question marks? em dashes? parenthetical asides?) |
+| Punctuation | Your quirks (double question marks? parenthetical asides?) |
 | Sentence Structure | Average length, shortest replies, longest messages |
 | Message Structure | How you format quick replies vs. formal deliverables |
 | Tone and Mood | Baseline warmth, how you express enthusiasm vs. pushback |
@@ -41,84 +43,50 @@ Every example in the file is a direct quote from your actual emails. Not hypothe
 
 ---
 
-## Why This Matters
+## Install (15 minutes, one time)
 
-Once you have a tone of voice file, you can:
-- Drop it into any AI workspace and get outputs that sound like you wrote them
-- Tell AI "write this email to my manager" and have it use the right register automatically
-- Stop editing every AI draft because "it doesn't sound like me"
-- Share it with AI tools, assistants, or teammates who write on your behalf
+### Step 1: Download ToneMate
 
-The difference between AI-with-tone-file and AI-without is immediately obvious. It is the difference between "clearly a robot wrote this" and "wait, did you actually write this?"
+1. Click the green **Code** button on this GitHub page
+2. Click **Download ZIP**
+3. Unzip the downloaded file
+4. Find the `tonemate` folder inside
 
----
+### Step 2: Create the required folders
 
-## Setup
+Inside your Claude Code project folder, create:
 
-### Prerequisites
-
-1. **Claude Code** installed and working
-2. **Gmail MCP** connected (any MCP server that provides Gmail search and read access)
-
-### Gmail MCP Options
-
-ToneMate needs two capabilities from your Gmail MCP:
-- Search sent emails (filter by sender, recipient, keywords, size)
-- Read full email body by message ID
-
-Common MCP servers that provide this:
-- **Google Workspace MCP** (official, most common)
-- **Gmail MCP** (standalone implementations)
-- Any MCP server with `gmail_search_emails` and `gmail_get_email` tools (or equivalently named)
-
-If you do not have a Gmail MCP set up yet, search "Gmail MCP server Claude Code" for installation guides. Setup typically takes 10-15 minutes and requires a Google OAuth consent screen.
-
-### Install ToneMate
-
-1. Download this repo (green Code button > Download ZIP)
-2. Copy `skills/tonemate.md` into your project's `.claude/skills/` folder
-3. Copy `context/guardrails-example.md` to `context/guardrails.md` (modify if needed)
-4. Run `/tonemate` in Claude Code
-
-Your project structure:
 ```
 your-project/
   .claude/
     skills/
-      tonemate.md
   context/
-    guardrails.md
-  personal_context/
-    tone-of-voice.md    (generated by ToneMate)
 ```
 
----
+On Mac, press Cmd+Shift+. in Finder to see hidden folders (the `.claude` folder starts with a dot).
 
-## How It Works (Step by Step)
+### Step 3: Copy the skill file
 
-### Step 1: Answer a few questions
+From the downloaded folder, copy:
+- `tonemate/skills/tonemate.md` into your project's `.claude/skills/` folder
 
-ToneMate asks about your email domain, the people you write to most, and (optionally) how you think you write. Takes 2-3 minutes.
+### Step 4: Set up context
 
-### Step 2: Watch it read your emails
+Copy `context/guardrails-example.md` to `context/guardrails.md` (modify if needed).
 
-Claude searches your sent messages across 5 categories (external, formal internal, casual, quick replies, long-form) and reads 15-20 real emails. You will see the MCP tool calls happening. This takes 3-5 minutes.
+### Step 5: Verify Gmail MCP is working
 
-### Step 3: Review the findings
+Before running ToneMate, confirm your Gmail MCP is connected. Try a simple Gmail search in Claude Code to verify.
 
-Claude presents a full analysis of your writing organized by 10 categories, with direct quotes from your emails. It also shows where your self-perception matches reality and where it does not.
+### Step 6: Run it
 
-This is the most valuable part. Most people discover something: "I didn't realize I always double-question-mark when I'm genuinely curious" or "I thought I was formal with leadership but I'm actually pretty casual."
+Open Claude Code in your project folder and type:
 
-Review it. Tell Claude what is right and what is off. It will not generate the file until you confirm.
+```
+/tonemate
+```
 
-### Step 4: Get your tone file
-
-After confirmation, Claude generates a complete `tone-of-voice.md` and saves it to your workspace. Every example in it is from your real emails.
-
-### Step 5: Use it
-
-From now on, any AI tool that reads your tone file before generating content will write in your voice. Tell it who the audience is, and it picks the right register.
+The output file lands at `personal_context/tone-of-voice.md` in your workspace.
 
 ---
 
@@ -146,35 +114,31 @@ From now on, any AI tool that reads your tone file before generating content wil
 
 ---
 
-## Privacy and Security
+## How It Works
 
-- ToneMate only reads emails you authorize (your sent messages, within your stated time window)
-- The generated tone file contains short quoted phrases demonstrating style patterns; it does not contain full emails
-- No email content is stored, indexed, or sent anywhere beyond the Claude conversation
-- You review everything before it is saved
-- The guardrails file enforces that recipient names and sensitive content are stripped from examples
+### Step 1: Answer a few questions
 
----
+ToneMate asks about your email domain, the people you write to most, and (optionally) how you think you write. Takes 2-3 minutes.
 
-## FAQ
+### Step 2: Watch it read your emails
 
-**How many emails does it read?**
-15-20 substantive sent messages across 5 search categories. It skips calendar invites, auto-replies, and one-word messages.
+Claude searches your sent messages across 5 categories (external, formal internal, casual, quick replies, long-form) and reads 15-20 real emails. You will see the MCP tool calls happening. This takes 3-5 minutes.
 
-**What if I write very differently on Slack vs. email?**
-ToneMate currently analyzes email only. If your Slack voice is meaningfully different, note that in the review phase and add Slack-specific patterns manually to the output file.
+### Step 3: Review the findings
 
-**Can I run it on a personal Gmail account?**
-Yes, as long as your Gmail MCP has access to that account.
+Claude presents a full analysis of your writing organized by 10 categories, with direct quotes from your emails. It also shows where your self-perception matches reality and where it does not.
 
-**What if I have not sent many emails recently?**
-If fewer than 10 substantive samples are found, ToneMate will warn you and suggest broadening the search window or adding manual writing samples.
+This is the most valuable part. Most people discover something: "I didn't realize I always double-question-mark when I'm genuinely curious" or "I thought I was formal with leadership but I'm actually pretty casual."
 
-**Does it work for languages other than English?**
-It will analyze whatever language your emails are in. The 10-category framework applies regardless of language.
+Review it. Tell Claude what is right and what is off. It will not generate the file until you confirm.
 
-**Can I share my tone file with others?**
-Yes. The guardrails ensure it does not contain sensitive content. It is safe to share with contractors, AI tools, or teammates who write on your behalf.
+### Step 4: Get your tone file
+
+After confirmation, Claude generates a complete `tone-of-voice.md` and saves it to your workspace.
+
+### Step 5: Use it
+
+From now on, any AI tool that reads your tone file before generating content will write in your voice. Tell it who the audience is, and it picks the right register.
 
 ---
 
@@ -199,16 +163,20 @@ Yes. The guardrails ensure it does not contain sensitive content. It is safe to 
 
 ---
 
-## Contributing
+## Privacy and Security
 
-PRs welcome. If you find a better search query pattern, a missing analysis category, or a way to extend this to Slack/Teams, open an issue or submit a fix.
+- ToneMate only reads emails you authorize (your sent messages, within your stated time window)
+- The generated tone file contains short quoted phrases demonstrating style patterns; it does not contain full emails
+- No email content is stored, indexed, or sent anywhere beyond the Claude conversation
+- You review everything before it is saved
+- The guardrails file enforces that recipient names and sensitive content are stripped from examples
 
 ---
 
 ## License
 
-MIT. Use it, modify it, share it.
+MIT
 
 ---
 
-Built by [PromptMates](https://promptmates.ai). Questions: jason@promptmates.ai
+*Part of the [PromptMates Toolkit](https://github.com/promptmates/promptmates-toolkit). Questions: jason@promptmates.ai*

@@ -1,33 +1,36 @@
 # PromptMates Toolkit
 
-The official repository for Claude Code skills, rules, and utilities from the PromptMates community.
+**Markdown skills that give Claude Code specialized capabilities. No coding required.**
+
+---
 
 ## What's In Here?
 
-Markdown files that give Claude Code specialized capabilities. Skills trigger with slash commands. Rules run in the background. Utilities are one-command installs that extend what Claude can do. No coding required.
+Skills are markdown files you drop into your Claude Code project. They trigger with slash commands and give your AI specific workflows, scoring logic, and output formats it wouldn't know otherwise. Rules run in the background on every interaction. Utilities are one-command installs that extend what Claude can do.
 
-## Available Skills
+Think of it like an app store: download what you need, install in 15 minutes, and your AI gets a new capability.
 
-| Skill | Command | What It Does |
-|---|---|---|
-| **SkillsMate** | `/skillsmate` | Paste a JD, get back a ranked list of companies hiring the same talent, Boolean strings, and a tactical sourcing plan |
-| **CareerMate** | `/careermate` | Paste a resume, get back expanded titles you should search, live role matches from ATS boards, and a personalized search plan |
-| **ToneMate** | `/tonemate` | Reads your sent emails via Gmail MCP, maps your audience registers, and generates a tone of voice file that makes AI write like you |
-| **IntelMate** | `/intelmate` | Scrapes competitor career pages, classifies roles, extracts comp data, scores talent brands, and builds recruiting battle cards |
-| **ScreenMate** | `/ss` | Take a screenshot, type `/ss`, and Claude reads it, describes what it sees, and asks what you want to do with it |
-| **TrailMate** | `/trailmate` | Agent receipt system for persistent task tracking. Leaves breadcrumbs so nothing evaporates between sessions. One glance shows what's moving, stuck, or waiting on you |
+---
 
-## Rules
+## Available Tools
 
-Not everything is a skill. Some things are behavioral guardrails that run in the background on every interaction.
+| Tool | Command | What It Does | Compatible Platforms |
+|------|---------|--------------|---------------------|
+| **SkillsMate** | `/skillsmate` | Paste a JD, get ranked companies hiring the same talent, Boolean strings, and a tactical sourcing plan | CLI, Desktop, VS Code, JetBrains, Cloud Co-Work |
+| **CareerMate** | `/careermate` | Paste a resume, get expanded titles, live role matches from ATS boards, and a personalized search plan | CLI, Desktop, VS Code, JetBrains, Cloud Co-Work |
+| **ToneMate** | `/tonemate` | Reads your sent emails, maps your audience registers, and generates a tone of voice file that makes AI write like you | CLI, Desktop (requires local Gmail MCP) |
+| **IntelMate** | `/intelmate` | Scrapes competitor career pages, classifies roles, extracts comp data, scores talent brands, and builds battle cards | CLI, Desktop, VS Code, JetBrains, Cloud Co-Work |
+| **RulesMate** | `.claude/rules/` | Five TA-specific behavioral principles that stop AI from hallucinating candidate data and giving unsupported recommendations | CLI, Desktop, VS Code, JetBrains, Cloud Co-Work |
+| **ScreenMate** | `/ss` | Take a screenshot, type `/ss`, and Claude reads it and asks what you want to do with it | CLI, Desktop (requires Mac screenshot folder access) |
+| **TrailMate** | `/trailmate` | Agent receipt system for persistent task tracking. Leaves breadcrumbs so nothing evaporates between sessions | CLI, Desktop, VS Code, JetBrains, Cloud Co-Work |
+| **BrowserMate** | `browsermate` | CDP browser harness that lets your agent control a real browser for web automation | CLI, Desktop (requires local CDP browser connection) |
 
-| Rules | Install Location | What It Does |
-|---|---|---|
-| **RulesMate** | `.claude/rules/` | Five TA-specific behavioral principles that stop your AI from hallucinating candidate data, over-editing JDs, and giving recommendations with no evidence. Inspired by the [Karpathy Guidelines](https://github.com/multica-ai/andrej-karpathy-skills). |
+---
 
 ## Getting Started
 
-New to GitHub or Claude Code? Each skill has its own Getting Started guide:
+New to GitHub or Claude Code? Each tool has its own Getting Started guide:
+
 - [SkillsMate Getting Started](skillsmate/Getting%20Started%20Guide%20-%20PromptMates%20GitHub.md) (for recruiters sourcing talent)
 - [CareerMate Getting Started](careermate/Getting%20Started%20Guide.md) (for job seekers finding roles)
 - [ToneMate Getting Started](tonemate/Getting%20Started%20Guide.md) (for anyone who wants AI to write in their voice)
@@ -35,6 +38,9 @@ New to GitHub or Claude Code? Each skill has its own Getting Started guide:
 - [RulesMate Getting Started](rulesmate/Getting%20Started%20Guide.md) (for TA-specific AI guardrails)
 - [ScreenMate Getting Started](screenmate/Getting%20Started%20Guide.md) (for screenshot-to-action in Claude Code)
 - [TrailMate Getting Started](trailmate/Getting%20Started%20Guide.md) (for persistent task tracking across sessions)
+- [BrowserMate Getting Started](browsermate/README.md) (for browser automation via CDP)
+
+---
 
 ## Quick Install (if you already know what you are doing)
 
@@ -54,67 +60,89 @@ New to GitHub or Claude Code? Each skill has its own Getting Started guide:
 2. Copy `screenmate/skills/ss.md` into `~/.claude/commands/`
 3. Set your screenshot folder (see [ScreenMate docs](screenmate/README.md))
 
+**For BrowserMate:**
+1. Clone the repo and install with `uv tool install -e .`
+2. Add `@~/path/to/browsermate/SKILL.md` to your `CLAUDE.md`
+
+---
+
 ## Repo Structure
 
 ```
 promptmates-toolkit/
   README.md              (you are here)
   skillsmate/
-    README.md            (detailed docs for SkillsMate)
+    README.md
     skills/
-      skillsmate.md       (the skill file you install)
+      skillsmate.md
     context/
       company-context-example.md
       tone-of-voice-example.md
       guardrails-example.md
       competitor-registry-template.yaml
   careermate/
-    README.md            (detailed docs for CareerMate)
+    README.md
     Getting Started Guide.md
     skills/
-      careermate.md   (the skill file you install)
+      careermate.md
     context/
       search-preferences-example.md
       guardrails-example.md
   tonemate/
-    README.md            (detailed docs for ToneMate)
+    README.md
     Getting Started Guide.md
     skills/
-      tonemate.md      (the skill file you install)
+      tonemate.md
     context/
       guardrails-example.md
   intelmate/
-    README.md            (detailed docs for IntelMate)
+    README.md
     Getting Started Guide.md
     skills/
-      intelmate.md     (the skill file you install)
+      intelmate.md
     context/
       company-profile-example.md
       guardrails-example.md
   rulesmate/
-    README.md            (detailed docs for RulesMate)
+    README.md
     Getting Started Guide.md
     rules/
-      rulesmate-ta-guidelines.md  (the rules file you install)
+      rulesmate-ta-guidelines.md
   screenmate/
-    README.md            (detailed docs for ScreenMate)
+    README.md
     Getting Started Guide.md
     skills/
-      ss.md              (the command file you install)
+      ss.md
   trailmate/
-    README.md            (detailed docs for TrailMate)
+    README.md
     Getting Started Guide.md
     skills/
-      trailmate.md       (the skill file you install)
+      trailmate.md
     context/
-      queue-example.md   (starter queue with example tasks)
-      guardrails-example.md (optional behavior rules)
+      queue-example.md
+      guardrails-example.md
+  browsermate/
+    README.md
+    SKILL.md
+    helpers.py
+    daemon.py
+    run.py
+    admin.py
+    domain-skills/
 ```
+
+---
 
 ## Contributing
 
 Built a skill that works well? Open a pull request or share it in the PromptMates community and we will add it here.
 
+---
+
 ## License
 
 MIT
+
+---
+
+*Part of the [PromptMates Toolkit](https://github.com/promptmates/promptmates-toolkit). Questions: jason@promptmates.ai*

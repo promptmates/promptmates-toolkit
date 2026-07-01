@@ -1,30 +1,45 @@
 # SkillsMate
 
-**Skills Density Index for recruiting.** Paste a job description into Claude Code, and SkillsMate tells you which companies are actively hiring that same talent, ranked by intensity, with Boolean search strings and a tactical sourcing plan ready to go.
+**Paste a job description. Get back the companies hiring that same talent, ranked by intensity, with Boolean strings and a tactical sourcing plan.**
+
+---
+
+## Prerequisites
+
+| Platform | Compatible? | Notes |
+|----------|-------------|-------|
+| Claude Code CLI | Yes | Full functionality |
+| Claude Desktop | Yes | Full functionality |
+| VS Code / JetBrains | Yes | Full functionality |
+| Cloud Co-Work (browser) | Yes | Full functionality |
+
+No MCP servers or local tools required. SkillsMate works with web search capabilities built into Claude Code.
 
 ---
 
 ## What You Get
 
-When you run `/skillsmate` and paste a JD, you get 4 things back:
+When you run `/skillsmate` and paste a JD, you get 4 deliverables:
 
-1. **Intake JSON** - The role broken down into its core skills, outcomes, and target market
-2. **Signal Pack** - Companies ranked by a 0-100 skills density score, grouped into Hotbeds (go here first), Reservoirs (steady targets), and New Entrants (emerging demand)
-3. **Evidence Annex** - The receipts. Every company score is backed by real job postings with URLs.
-4. **Battle Card** - The tactical doc you hand to a sourcer: Boolean strings, a 3-week plan, and talking points for why candidates should leave each target company
+| Deliverable | What it contains |
+|-------------|-----------------|
+| **Intake JSON** | The role broken down into its core skills, outcomes, and target market |
+| **Signal Pack** | Companies ranked by a 0-100 skills density score, grouped into Hotbeds (go here first), Reservoirs (steady targets), and New Entrants (emerging demand) |
+| **Evidence Annex** | The receipts. Every company score is backed by real job postings with URLs |
+| **Battle Card** | The tactical doc you hand to a sourcer: Boolean strings, a 3-week plan, and talking points for why candidates should leave each target company |
 
 ---
 
-## Setup (15 minutes, one time)
+## Install (15 minutes, one time)
 
 ### Step 1: Download SkillsMate
 
-You are on GitHub right now (https://github.com/promptmates/claude-skills). Here is how to download:
+You are on GitHub right now (https://github.com/promptmates/promptmates-toolkit). Here is how to download:
 
 1. Click the green **Code** button near the top of this page
 2. Click **Download ZIP**
 3. Find the downloaded ZIP file (probably in your Downloads folder) and unzip it
-4. You now have a folder called `claude-skills-main`. Inside it, find the `skillsmate` subfolder.
+4. You now have a folder called `promptmates-toolkit-main`. Inside it, find the `skillsmate` subfolder.
 
 ### Step 2: Find your Claude Code project folder
 
@@ -42,9 +57,10 @@ Inside your project folder, you need two folders. If they do not already exist, 
 
 **On Mac (Finder):**
 1. Open your project folder in Finder
-2. Create a new folder called `.claude` (note the dot at the start - on Mac, press Cmd+Shift+. to show hidden files)
-3. Inside `.claude`, create a folder called `skills`
-4. Back in your project folder, create a folder called `context`
+2. Press Cmd+Shift+. to show hidden files
+3. Create a new folder called `.claude` (note the dot at the start)
+4. Inside `.claude`, create a folder called `skills`
+5. Back in your project folder, create a folder called `context`
 
 **On Windows (File Explorer):**
 1. Open your project folder in File Explorer
@@ -64,8 +80,8 @@ your-project/
 
 ### Step 4: Copy the skill file
 
-From the downloaded `skillsmate-main` folder:
-- Copy `skills/skillsmate.md` into your project's `.claude/skills/` folder
+From the downloaded `promptmates-toolkit-main` folder:
+- Copy `skillsmate/skills/skillsmate.md` into your project's `.claude/skills/` folder
 
 ### Step 5: Create your context files
 
@@ -104,9 +120,7 @@ Claude should ask you for a JD or skill cluster. Paste one in, and you should ge
 
 ---
 
-## How to Use It
-
-Once installed, you can trigger SkillsMate any of these ways:
+## Usage
 
 | What you type | What happens |
 |---|---|
@@ -117,7 +131,9 @@ Once installed, you can trigger SkillsMate any of these ways:
 
 ---
 
-## How Scoring Works
+## How It Works
+
+### Scoring Methodology
 
 Each company gets a score from 0-100 based on real hiring signals:
 
@@ -136,9 +152,7 @@ Each company gets a score from 0-100 based on real hiring signals:
 - **Reservoirs** (score 40-69): Steady demand. Good for relationship building and pipeline.
 - **New Entrants** (score below 40, recently started posting): Just entering this space. Candidates there may not know they are about to get recruited heavily.
 
----
-
-## What is in the Battle Card
+### What is in the Battle Card
 
 The Battle Card is the part you actually hand to your sourcing team:
 
@@ -153,7 +167,7 @@ The Battle Card is the part you actually hand to your sourcing team:
 ## Troubleshooting
 
 **"Claude does not recognize /skillsmate"**
-- Make sure `skillsmate.md` is in `.claude/skills/` (not `claude/skills/` - the dot matters)
+- Make sure `skillsmate.md` is in `.claude/skills/` (not `claude/skills/`, the dot matters)
 - Make sure you are running Claude Code from your project folder (the one containing `.claude/`)
 
 **"Output mentions placeholder text or example content"**
@@ -169,4 +183,8 @@ The Battle Card is the part you actually hand to your sourcing team:
 
 ## License
 
-MIT - use it however you want, modify it, share it.
+MIT
+
+---
+
+*Part of the [PromptMates Toolkit](https://github.com/promptmates/promptmates-toolkit). Questions: jason@promptmates.ai*

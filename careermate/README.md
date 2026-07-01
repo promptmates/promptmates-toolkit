@@ -1,23 +1,19 @@
 # CareerMate
 
-**Your job search is too narrow.** You are searching for titles you have held, at companies you have heard of, on platforms you already know. CareerMate expands your search by mapping the skills you have to roles you have not considered.
-
-Paste your resume into Claude Code, answer a few questions, and CareerMate will:
-1. Map your core skills AND adjacent skills you may not realize you have
-2. Expand your title to 5-10 alternate titles that match your actual scope
-3. Search public ATS boards live for matching roles
-4. Surface "adjacency discoveries" - roles you are probably not searching for but should be
-5. Generate copy-paste Boolean strings and a weekly search routine
+**Your job search is too narrow. CareerMate expands it by mapping the skills you have to roles you have not considered.**
 
 ---
 
-## How It Works
+## Prerequisites
 
-CareerMate inverts the logic of a corporate sourcing tool. Instead of "here's a role, find candidates," it asks "here's a candidate, find roles."
+| Platform | Compatible? | Notes |
+|----------|-------------|-------|
+| Claude Code CLI | Yes | Full functionality |
+| Claude Desktop | Yes | Full functionality |
+| VS Code / JetBrains | Yes | Full functionality |
+| Cloud Co-Work (browser) | Yes | Full functionality |
 
-The key insight: most job seekers search too narrowly. If your title is "Recruiting Manager," you are probably only searching for that exact phrase. But your actual skills (program management, stakeholder communication, data analysis, vendor management, process design) qualify you for roles with titles you have never searched for.
-
-CareerMate identifies those gaps and fills them.
+No MCP servers or local tools required. CareerMate works with web search capabilities built into Claude Code.
 
 ---
 
@@ -32,12 +28,7 @@ CareerMate identifies those gaps and fills them.
 
 ---
 
-## Setup (15 minutes, one time)
-
-### Prerequisites
-
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) installed and working
-- A project folder open in Claude Code
+## Install (15 minutes, one time)
 
 ### Step 1: Download CareerMate
 
@@ -62,9 +53,9 @@ On Mac, press Cmd+Shift+. in Finder to see hidden folders (the `.claude` folder 
 ### Step 3: Copy the skill file
 
 From the downloaded folder, copy:
-- `skills/careermate.md` → into your project's `.claude/skills/` folder
+- `careermate/skills/careermate.md` into your project's `.claude/skills/` folder
 
-### Step 4: Create your context file
+### Step 4: Create your context files
 
 Copy `context/search-preferences-example.md` to `context/search-preferences.md` and fill in your actual preferences (location, remote/hybrid, comp floor, deal-breakers).
 
@@ -100,28 +91,32 @@ Claude will ask what you have (resume, LinkedIn, target JDs) and what matters to
 
 ---
 
-## How Scoring Works
+## How It Works
+
+CareerMate inverts the logic of a corporate sourcing tool. Instead of "here's a role, find candidates," it asks "here's a candidate, find roles."
+
+The key insight: most job seekers search too narrowly. If your title is "Recruiting Manager," you are probably only searching for that exact phrase. But your actual skills (program management, stakeholder communication, data analysis, vendor management, process design) qualify you for roles with titles you have never searched for.
+
+CareerMate identifies those gaps and fills them.
+
+### Scoring Methodology
 
 Each role gets a score from 0-100:
 
 | Signal | Weight | What it means |
 |--------|--------|--------------|
-| **Skill Overlap** (35%) | How many of the role's required skills appear in your profile |
-| **Adjacency Bonus** (20%) | Extra credit for roles matching your expanded titles or adjacent skills |
-| **Preference Alignment** (20%) | Match on location, remote/hybrid, company stage, industry |
-| **Recency** (15%) | Recently posted roles score higher. Stale postings get downranked. |
-| **Seniority Fit** (10%) | Alignment between role level and your experience level |
+| **Skill Overlap** | 35% | How many of the role's required skills appear in your profile |
+| **Adjacency Bonus** | 20% | Extra credit for roles matching your expanded titles or adjacent skills |
+| **Preference Alignment** | 20% | Match on location, remote/hybrid, company stage, industry |
+| **Recency** | 15% | Recently posted roles score higher. Stale postings get downranked. |
+| **Seniority Fit** | 10% | Alignment between role level and your experience level |
 
 **Categories:**
 - **Strong Match** (75+): You clearly qualify. Apply with confidence.
 - **Stretch Match** (50-74): You have most of what they need. Worth applying.
 - **Adjacency Discovery** (35-49): Roles you are not searching for but should consider. These are the ones that change your search.
 
----
-
-## Where It Searches
-
-CareerMate queries public ATS APIs and job boards:
+### Where It Searches
 
 | Source | What it covers |
 |--------|---------------|
@@ -135,9 +130,7 @@ CareerMate queries public ATS APIs and job boards:
 | Getro | Network-powered job boards |
 | Jobvite | Mid-market companies |
 
----
-
-## Boolean Strings
+### Boolean Strings
 
 CareerMate generates Boolean search strings customized to your expanded profile. These are copy-paste ready for:
 
@@ -146,16 +139,6 @@ CareerMate generates Boolean search strings customized to your expanded profile.
 - Direct ATS board searches (Greenhouse, Lever, Ashby, Workday, Getro, Jobvite)
 
 The strings use your expanded title list and adjacent skills, not just your current title. This is where most of the "hidden roles" come from.
-
----
-
-## A Few Things Worth Remembering
-
-- **Finding a new role is hard.** Hard does not mean bad. There will be good days, tough days, and disappointing days. None of those reflect your value.
-- **It only takes one.** You are not looking for a pile of offers. You are looking for one good match.
-- **You are not your job.** A job is something you do to support the life you want.
-- **AI is a tool, not a magic wand.** CareerMate expands your search. You still need to apply, network, and show up. But now you are searching smarter.
-- **The process can feel lonely. If you are reading this, you are not alone.**
 
 ---
 
@@ -177,16 +160,20 @@ The strings use your expanded title list and adjacent skills, not just your curr
 
 ---
 
-## Contributing
+## A Few Things Worth Remembering
 
-PRs welcome. If you find a new ATS board pattern, a better scoring signal, or a bug, open an issue or submit a fix.
+- **Finding a new role is hard.** Hard does not mean bad. There will be good days, tough days, and disappointing days. None of those reflect your value.
+- **It only takes one.** You are not looking for a pile of offers. You are looking for one good match.
+- **You are not your job.** A job is something you do to support the life you want.
+- **AI is a tool, not a magic wand.** CareerMate expands your search. You still need to apply, network, and show up. But now you are searching smarter.
+- **The process can feel lonely. If you are reading this, you are not alone.**
 
 ---
 
 ## License
 
-MIT. Use it, modify it, share it. If it helps you land a role, that is all that matters.
+MIT
 
 ---
 
-Built by [PromptMates](https://promptmates.ai). Questions: jason@promptmates.ai
+*Part of the [PromptMates Toolkit](https://github.com/promptmates/promptmates-toolkit). Questions: jason@promptmates.ai*
