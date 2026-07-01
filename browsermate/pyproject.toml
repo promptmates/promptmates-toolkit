@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "browsermate"
+version = "0.1.0"
+description = "CDP browser harness for Claude Code. Your agent controls your real browser."
+requires-python = ">=3.11"
+dependencies = [
+    "browser-harness==0.0.1",
+    "cdp-use==1.4.5",
+    "websockets==16.0",
+]
+
+[project.scripts]
+browsermate = "run:main"
+
+[tool.setuptools]
+py-modules = ["run", "helpers", "daemon", "admin"]
