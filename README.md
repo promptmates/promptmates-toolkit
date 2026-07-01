@@ -10,6 +10,10 @@ Skills are markdown files you drop into your Claude Code project. They trigger w
 
 Think of it like an app store: download what you need, install in 15 minutes, and your AI gets a new capability.
 
+### Don't have Claude Code installed?
+
+You don't need to. Most of these skills work with [Cloud Co-Work](https://claude.ai/code), the browser-based version of Claude Code. No install, no terminal, no setup. Just open it in your browser and upload the skill files. See the "Compatible Platforms" column below to check which tools work there.
+
 ---
 
 ## Available Tools
