@@ -24,7 +24,9 @@ Trigger when user says:
 Also triggers automatically:
 - At the start of a new session (read the queue, surface stale items)
 - When you hit a wall and can't finish something (write a receipt before the session ends)
+- When the conversation is about to be compacted/summarized (checkpoint anything in flight)
 - When a multi-session task is assigned
+- When 15+ minutes into something that clearly won't finish this session
 
 ## Core Concept
 
