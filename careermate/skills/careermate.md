@@ -116,31 +116,89 @@ Query public ATS APIs using the verified board tokens in `context/target-compani
 
 **How the agent searches (API-based):**
 
-The agent calls these APIs directly. No browser or Google search required.
+IMPORTANT: Do NOT use WebFetch for these API calls. WebFetch truncates large JSON responses and will miss most jobs on boards with 50+ roles. Use Bash with curl + python3 instead. This is mandatory.
 
-1. **Greenhouse boards:** `https://boards-api.greenhouse.io/v1/boards/{token}/jobs`
-   - Returns JSON with all open jobs for that company
-   - Filter by matching keywords in title and content against the user's profile
-   - If a token returns 404, skip it silently and move on
+**Method: Bash tool with curl and python3 for all board searches.**
 
-2. **Ashby boards:** `https://api.ashbyhq.com/posting-api/job-board/{slug}`
-   - Returns JSON with a `jobs` array containing all open positions
-   - Each job has: title, department, team, location, employmentType, publishedAt
-   - This is the largest source: OpenAI (719 jobs), Snowflake (420), Notion (148), Cohere (129)
+The agent calls each API via curl, pipes through python3 for JSON parsing, and extracts title matches. No browser or Google search required.
 
-3. **Lever postings:** `https://api.lever.co/v0/postings/{slug}?mode=json`
-   - Returns JSON array of all postings
-   - Fewer companies remain on Lever (Palantir, Mistral, Ro are notable)
-   - If 404, skip and move on
+**Batch search pattern (search multiple boards in a single Bash call):**
 
-4. **Individual job detail (Greenhouse only):** `https://boards-api.greenhouse.io/v1/boards/{token}/jobs/{job_id}`
+```bash
+python3 -c "
+import json, urllib.request, urllib.error, sys
+
+# Define boards to search (copy from target-companies.md)
+greenhouse_boards = [('anthropic', 'Anthropic'), ('scaleai', 'Scale AI'), ...]  # fill from target list
+ashby_boards = [('openai', 'OpenAI'), ('snowflake', 'Snowflake'), ...]
+lever_boards = [('palantir', 'Palantir'), ...]
+
+# Define title keywords from user's title_expansion
+titles = ['head of talent', 'director people', 'recruiting operations', ...]  # from Phase 1
+
+matches = []
+
+def check_title(title, keywords):
+    t = title.lower()
+    return any(kw in t for kw in keywords)
+
+# Greenhouse
+for token, company in greenhouse_boards:
+    try:
+        req = urllib.request.Request(f'https://boards-api.greenhouse.io/v1/boards/{token}/jobs', headers={'User-Agent': 'CareerMate/1.0'})
+        with urllib.request.urlopen(req, timeout=12) as resp:
+            data = json.loads(resp.read().decode())
+            for j in data.get('jobs', []):
+                if check_title(j.get('title',''), titles):
+                    matches.append({'title': j['title'], 'company': company, 'location': j.get('location',{}).get('name',''), 'url': j.get('absolute_url',''), 'platform': 'greenhouse'})
+    except: pass
+
+# Ashby
+for slug, company in ashby_boards:
+    try:
+        req = urllib.request.Request(f'https://api.ashbyhq.com/posting-api/job-board/{slug}', headers={'User-Agent': 'CareerMate/1.0'})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = json.loads(resp.read().decode())
+            for j in data.get('jobs', []):
+                if check_title(j.get('title',''), titles):
+                    matches.append({'title': j['title'], 'company': company, 'location': j.get('location',''), 'url': f'https://jobs.ashbyhq.com/{slug}/{j.get(\"id\",\"\")}', 'platform': 'ashby'})
+    except: pass
+
+# Lever
+for slug, company in lever_boards:
+    try:
+        req = urllib.request.Request(f'https://api.lever.co/v0/postings/{slug}?mode=json', headers={'User-Agent': 'CareerMate/1.0'})
+        with urllib.request.urlopen(req, timeout=12) as resp:
+            data = json.loads(resp.read().decode())
+            if isinstance(data, list):
+                for j in data:
+                    if check_title(j.get('text',''), titles):
+                        matches.append({'title': j['text'], 'company': company, 'location': j.get('categories',{}).get('location',''), 'url': j.get('hostedUrl',''), 'platform': 'lever'})
+    except: pass
+
+print(json.dumps(matches, indent=2))
+print(f'\\n--- SEARCHED: {len(greenhouse_boards)} Greenhouse + {len(ashby_boards)} Ashby + {len(lever_boards)} Lever = {len(greenhouse_boards)+len(ashby_boards)+len(lever_boards)} boards ---', file=sys.stderr)
+print(f'--- MATCHED: {len(matches)} roles ---', file=sys.stderr)
+"
+```
+
+**Adapt this pattern for each run:**
+1. Copy ALL board tuples from `context/target-companies.md` into the script (minus any excluded industries)
+2. Set `titles` to the lowercased keywords from the user's title_expansion (Phase 1 output)
+3. Run it as a single Bash call. It will complete in 2-4 minutes.
+4. Parse the JSON output for scoring in Phase 3.
+
+**You may split into 2-3 Bash calls if the board list is very long** (to avoid timeout), but do NOT use WebFetch.
+
+**Individual job detail (Greenhouse only):** `https://boards-api.greenhouse.io/v1/boards/{token}/jobs/{job_id}`
    - Fetch full description for promising matches to confirm skill overlap
-   - Only fetch detail for roles where title is a potential match
+   - Use curl or python3 urllib for this too
+   - Only fetch detail for roles where title is a strong match
 
 **Search Strategy:**
 1. Read `context/target-companies.md` for the board token list
-2. Filter the list by user's industry preferences (but always include AI/ML and HR Tech sections)
-3. Search at least 20 boards per run for meaningful coverage
+2. Search ALL boards in the list unless the user has explicitly excluded an industry in their deal-breakers. "Filter by preference" means REMOVE excluded industries only, not select favorites. When in doubt, search more, not fewer.
+3. Target: search all 90 boards. Minimum acceptable: 60. If you search fewer than 60, explain why.
 4. For each board: fetch all jobs, scan titles for matches against title_expansion + core_skills
 5. For strong title matches: fetch full job description to confirm skill overlap and extract comp/location/remote status
 6. Deduplicate (same role may appear under multiple tokens if a company has changed names)

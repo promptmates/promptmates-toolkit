@@ -11,9 +11,11 @@
 | Claude Code CLI | Yes | Full functionality (recommended) |
 | Claude Desktop | Yes | Full functionality |
 | VS Code / JetBrains | Yes | Full functionality |
-| Cloud Co-Work (browser) | Yes | Full functionality |
+| Cloud Co-Work (browser) | Partial | Profile expansion, title mapping, and Boolean strings work. Live board search (Phase 2) requires Bash access, so it only runs on CLI, Desktop, or IDE. |
 
-No MCP servers required. CareerMate uses public ATS APIs (Greenhouse, Ashby, Lever) that need no authentication. All it needs is internet access and the ability to fetch URLs.
+No MCP servers required. CareerMate uses public ATS APIs (Greenhouse, Ashby, Lever) that need no authentication.
+
+**System requirements:** Python 3.8+ and curl (both pre-installed on Mac and Linux; included in all Claude Code environments). The agent uses these to fetch live job data from career boards. If you can run Claude Code, you already have what you need.
 
 ---
 
