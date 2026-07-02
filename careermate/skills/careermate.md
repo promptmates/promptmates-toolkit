@@ -27,12 +27,19 @@ CareerMate is universal. It works for any background, any industry, any career s
 Before generating output, read:
 1. `context/guardrails.md` (output constraints)
 2. `context/search-preferences.md` (user's location, remote preferences, comp floor, etc.)
+3. `context/target-companies.md` (verified board tokens for live search)
+
+If `search-preferences.md` is blank or contains only the template, run Phase 0 in full. If it already has populated fields, confirm with the user: "I have your preferences from last time [summarize]. Still good, or want to adjust anything?"
+
+## Runtime Expectation
+
+This skill performs live API searches across 15-30 company career boards. Expect the full run to take 2-4 minutes once intake is complete. The agent will search in parallel batches, but each batch requires a network round-trip. Let the user know: "This will take a few minutes while I search live boards. I'll show you what I find."
 
 ## Execution Sequence
 
 ### Phase 0: Interactive Intake
 
-Do not skip this phase. Ask the user what they have and what they want before proceeding.
+Do not skip this phase on first run. Ask the user what they have and what they want before proceeding.
 
 **Question 1: What do you have?**
 
@@ -63,6 +70,8 @@ Ask: "How wide should I cast the net?"
 
 If the user is unsure, default to "adjacent roles" and explain what that means for their specific background.
 
+**After intake: Save preferences.** Write the user's answers to `context/search-preferences.md` so future runs can skip Phase 0.
+
 ### Phase 1: Profile Extraction
 
 Parse all provided inputs to extract:
@@ -89,35 +98,65 @@ Strip these from extraction: responsible for, ability to, collaborate, cross fun
 
 **Title Expansion Logic:**
 Based on scope and skills, generate alternate titles. Examples:
-- "Recruiting Manager" → also search: Head of Talent, TA Lead, People Operations Manager, Talent Partner (Senior), Recruiting Lead
-- "Software Engineer" → also search: Developer, SDE, Backend Engineer, Platform Engineer, Full Stack Engineer
-- "Data Analyst" → also search: Analytics Engineer, Business Intelligence Analyst, Insights Analyst, Decision Scientist
+- "Recruiting Manager" -> also search: Head of Talent, TA Lead, People Operations Manager, Talent Partner (Senior), Recruiting Lead
+- "Software Engineer" -> also search: Developer, SDE, Backend Engineer, Platform Engineer, Full Stack Engineer
+- "Data Analyst" -> also search: Analytics Engineer, Business Intelligence Analyst, Insights Analyst, Decision Scientist
 
-Always show the user the expanded title list and ask: "Do these feel right? Add or remove any before I search."
+---
+
+**STOP. Show the user the expanded title list and ask: "Do these feel right? Add or remove any before I search."**
+
+Do not proceed to Phase 2 until the user confirms or adjusts the title expansion. This is the moment where CareerMate shows its value: surfacing titles the user hadn't considered. Rushing past it defeats the purpose.
+
+---
 
 ### Phase 2: Live Search
 
-Query public ATS APIs and job boards using the expanded skill and title profile.
+Query public ATS APIs using the verified board tokens in `context/target-companies.md`.
 
-**ATS API Sources (in priority order):**
+**How the agent searches (API-based):**
 
-1. Greenhouse boards: `https://boards-api.greenhouse.io/v1/boards/{board_token}/jobs`
-2. Lever postings: `https://api.lever.co/v0/postings/{company}`
-3. Ashby boards: `https://jobs.ashbyhq.com/api/non-user-graphql` (company-specific)
-4. Workday: `inurl:wd1.myworkdaysite.com` (via Google search)
-5. Getro network boards: `inurl:getro.com`
-6. Jobvite: `inurl:jobs.jobvite.com`
+The agent calls these APIs directly. No browser or Google search required.
 
-**Aggregator Sources:**
-- Consider.com VC boards
-- Wellfound (formerly AngelList)
-- Climatebase (if sustainability/climate interest indicated)
+1. **Greenhouse boards:** `https://boards-api.greenhouse.io/v1/boards/{token}/jobs`
+   - Returns JSON with all open jobs for that company
+   - Filter by matching keywords in title and content against the user's profile
+   - If a token returns 404, skip it silently and move on
+
+2. **Ashby boards:** `https://api.ashbyhq.com/posting-api/job-board/{slug}`
+   - Returns JSON with a `jobs` array containing all open positions
+   - Each job has: title, department, team, location, employmentType, publishedAt
+   - This is the largest source: OpenAI (719 jobs), Snowflake (420), Notion (148), Cohere (129)
+
+3. **Lever postings:** `https://api.lever.co/v0/postings/{slug}?mode=json`
+   - Returns JSON array of all postings
+   - Fewer companies remain on Lever (Palantir, Mistral, Ro are notable)
+   - If 404, skip and move on
+
+4. **Individual job detail (Greenhouse only):** `https://boards-api.greenhouse.io/v1/boards/{token}/jobs/{job_id}`
+   - Fetch full description for promising matches to confirm skill overlap
+   - Only fetch detail for roles where title is a potential match
 
 **Search Strategy:**
-1. Build keyword combinations from core_skills + title_expansion
-2. Filter by geo_preference and work_model
-3. For each source, retrieve matching roles: title, company, location, posting date, URL
-4. Deduplicate across sources (same role may appear on company site AND aggregator)
+1. Read `context/target-companies.md` for the board token list
+2. Filter the list by user's industry preferences (but always include AI/ML and HR Tech sections)
+3. Search at least 20 boards per run for meaningful coverage
+4. For each board: fetch all jobs, scan titles for matches against title_expansion + core_skills
+5. For strong title matches: fetch full job description to confirm skill overlap and extract comp/location/remote status
+6. Deduplicate (same role may appear under multiple tokens if a company has changed names)
+
+**What the agent CANNOT do:**
+- Google site-search (Google blocks automated access)
+- Workday career sites (JavaScript-rendered, no public API)
+- iCIMS, Taleo, SuccessFactors (enterprise ATS with no public API)
+
+These limitations are why the Boolean strings in Phase 4 exist: they are for the USER to run in their own browser.
+
+**Handling 404s and failures:**
+Many company board tokens change over time. If a board returns 404 or empty results:
+- Skip it without comment
+- Do not retry
+- Do not tell the user "I couldn't reach X" unless more than half of boards fail (which indicates a network issue)
 
 **Minimum evidence standard:** Every role in the output must have a direct URL to the posting. No invented links.
 
@@ -151,7 +190,7 @@ Show the user what you extracted and expanded. This is their mirror: what the ma
 ```
 **Core Skills:** [list]
 **Adjacent Skills:** [list]
-**Title Expansion:** [current title] → [expanded titles]
+**Title Expansion:** [current title] -> [expanded titles]
 **Transferable Outcomes:** [list]
 **Industries (direct + adjacent):** [list]
 ```
@@ -160,8 +199,8 @@ Show the user what you extracted and expanded. This is their mirror: what the ma
 
 Table format, sorted by match score descending:
 
-| Score | Title | Company | Location | Work Model | Posted | Why It Matches | Apply Link |
-|-------|-------|---------|----------|------------|--------|----------------|------------|
+| Score | Title | Company | Location | Work Model | Why It Matches | Apply Link |
+|-------|-------|---------|----------|------------|----------------|------------|
 
 Group into three sections:
 - **Strong Matches** (75+)
@@ -170,6 +209,8 @@ Group into three sections:
 
 For Adjacency Discoveries, include a one-line explanation of WHY this is adjacent ("Your program management experience + data skills maps to this Analytics PM role").
 
+If a section is empty, say so: "No strong matches found in this search. Consider broadening your title expansion or industry scope."
+
 #### Output 3: `### 3) Roles You Are Probably Missing`
 
 The highest-value section. Based on adjacency analysis, identify:
@@ -177,29 +218,58 @@ The highest-value section. Based on adjacency analysis, identify:
 - Industries they have not considered where their skills transfer
 - Company stages they may be overlooking
 
-Format as a short, direct list with reasoning.
+Format as a short, direct list with reasoning. 3-5 items max. Each one should be specific enough to act on.
 
 #### Output 4: `### 4) Your Personalized Search Plan`
 
-**Section 1: Custom Boolean Strings**
+**Section 1: Custom Boolean Strings (for your browser)**
 
-Tailored to the user's expanded profile. Provide copy-paste ready strings for:
-- LinkedIn job search
-- Google search (site:linkedin.com/jobs format)
-- Each ATS pattern from the toolkit (Greenhouse, Lever, Ashby, Workday, Getro, Jobvite)
+These are for the user to run manually in their browser. The agent cannot run Google searches.
+
+Tailored to the user's expanded profile. Provide copy-paste ready strings for each platform. Use the user's title_expansion and geo preferences to fill in the terms.
+
+**Template (replace [TITLES] and [LOCATIONS] with user's profile):**
+
+```
+inurl:boards.greenhouse.io ([TITLES]) AND ([LOCATIONS])
+inurl:jobs.ashbyhq.com ([TITLES]) AND ([LOCATIONS])
+inurl:jobs.lever.co ([TITLES]) AND ([LOCATIONS])
+inurl:wd1.myworkdaysite.com ([TITLES]) AND ([LOCATIONS])
+inurl:getro.com ("jobs" OR "careers" OR "openings") AND ([TITLES]) AND ([LOCATIONS])
+inurl:jobs.jobvite.com ([TITLES]) AND ([LOCATIONS])
+inurl:taleo.net ([TITLES]) AND ([LOCATIONS])
+```
+
+**Example for a recruiter searching remote + SF:**
+
+```
+inurl:boards.greenhouse.io ("recruit*" OR "talent acquisition" OR "sourcer") AND ("remote" OR "virtual" OR "work from home" OR "San Francisco")
+inurl:jobs.ashbyhq.com ("recruit*" OR "talent acquisition" OR "sourcer") AND ("remote" OR "virtual" OR "work from home" OR "San Francisco")
+inurl:jobs.lever.co ("recruit*" OR "talent acquisition" OR "sourcer") AND ("remote" OR "virtual" OR "work from home" OR "San Francisco")
+inurl:wd1.myworkdaysite.com ("recruit*" OR "talent acquisition" OR "sourcer") AND ("remote" OR "virtual" OR "work from home" OR "San Francisco")
+inurl:getro.com ("jobs" OR "careers" OR "openings") AND ("recruit*" OR "talent acquisition" OR "sourcer") AND ("remote" OR "virtual" OR "work from home" OR "San Francisco")
+inurl:jobs.jobvite.com ("recruit*" OR "talent acquisition" OR "sourcer") AND ("remote" OR "virtual" OR "work from home" OR "San Francisco")
+inurl:taleo.net ("recruit*" OR "talent acquisition" OR "sourcer") AND ("remote" OR "virtual" OR "work from home" OR "San Francisco")
+```
+
+Also provide a LinkedIn-specific string:
+```
+("Title A" OR "Title B" OR "Title C") AND ("remote" OR "City, State")
+```
 
 **Section 2: Platform Strategy**
 
 Which platforms to check and why, based on their target:
-- Consider.com → VC-backed growth companies
-- Wellfound → early-stage startups, also good for advisory/fractional roles
-- Climatebase → mission-driven climate companies
-- Direct ATS boards → for specific target companies
+- Consider.com -> VC-backed growth companies
+- Wellfound -> early-stage startups, also good for advisory/fractional roles
+- Climatebase -> mission-driven climate companies (only if relevant to user)
+- Direct ATS boards -> for specific target companies
+- Bolster.com -> executive and fractional placements (if senior)
 
 **Section 3: Weekly Search Routine**
 
 A simple 3x/week cadence:
-- Monday: Run Boolean strings, check new postings from last 3 days
+- Monday: Run Boolean strings in your browser, check new postings from last 3 days
 - Wednesday: Check aggregator platforms, apply to Stretch Matches
 - Friday: Review Adjacency Discoveries, update profile if new patterns emerge
 
@@ -215,24 +285,26 @@ Brief guidance on approach:
 ## Evidence Quality Rules
 
 ### What Counts
-- A live job posting with a direct URL
-- Role is currently open (not archived/filled)
-- Posting date is within last 90 days
+- A live job posting with a direct URL retrieved via API
+- Role is currently open (appeared in the board's active jobs list)
+- URL resolves to an actual posting page
 
 ### What Does NOT Count
 - Roles without a traceable URL
 - Aggregator-only listings with no company source
-- Roles that have been open 120+ days (likely evergreen/filled)
+- Roles the agent "remembers" from training data but did not verify live
 - Staffing agency postings (flag but deprioritize)
 
 ## What NOT to Do
 
 - Do not invent URLs or role listings
-- Do not guess at compensation unless posted
+- Do not guess at compensation unless it appeared in the job description
 - Do not make assumptions about the user's qualifications beyond what they provided
 - Do not filter roles based on your own judgment of "fit" without explaining why
-- Do not skip the intake questions
+- Do not skip the intake questions on first run
+- Do not skip the title expansion confirmation step
 - Do not be discouraging. If matches are thin, say so honestly and suggest adjustments to search parameters.
+- Do not apologize for 404s or failed board lookups. Just skip them.
 
 ## Tone
 
@@ -248,3 +320,4 @@ This tool serves people in job search. That is a vulnerable position. Be:
 |------|---------|
 | `context/search-preferences.md` | User's location, remote pref, comp floor, deal-breakers |
 | `context/guardrails.md` | Output constraints (no invented data, formatting rules) |
+| `context/target-companies.md` | Verified board tokens for API search |

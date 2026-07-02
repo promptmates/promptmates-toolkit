@@ -90,8 +90,12 @@ promptmates-toolkit/
     skills/
       careermate.md
     context/
+      target-companies.md
       search-preferences-example.md
-      guardrails-example.md
+      guardrails.md
+    scripts/
+      discover_boards.py
+      find_ta_roles.py
   tonemate/
     README.md
     Getting Started Guide.md

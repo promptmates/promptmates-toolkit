@@ -1,44 +1,40 @@
 # Search Preferences
 
-Replace this file with your own preferences. Save as `search-preferences.md` (remove the "-example" suffix).
+Fill this in after your first CareerMate run, or let the agent populate it from your intake answers. Once filled, future runs skip the preference questions and go straight to search.
 
 ## Location
 
-- Current location: Austin, TX
-- Willing to relocate: No
-- Open to travel: Up to 25%
+- Current location:
+- Willing to relocate:
+- Open to travel:
 
 ## Work Model
 
-- Preference: Remote or hybrid
-- If hybrid, max days in office: 2-3
+- Preference:
+- If hybrid, max days in office:
 
 ## Company Stage
 
-- Preference: Growth stage or enterprise
-- Open to startups: Yes, if funded (Series B+)
-- Open to enterprise: Yes
+- Preference:
+- Open to startups:
+- Open to enterprise:
 
 ## Industry
 
-- Target industries: Technology, Healthcare, SaaS
-- Industries to avoid: None specified
-- Open to adjacent industries: Yes
+- Target industries:
+- Industries to avoid:
+- Open to adjacent industries:
 
 ## Compensation
 
-- Minimum base: $150,000
-- Total comp floor (base + bonus + equity): $180,000
+- Minimum base:
+- Total comp floor (base + bonus + equity):
 - Note: Leave blank if you prefer not to filter by comp. Many postings do not list ranges.
 
 ## Deal-Breakers
 
-- No full-time onsite roles
-- No contract/temp positions (unless contract-to-hire)
-- No roles requiring active security clearance
+-
 
 ## Nice-to-Haves
 
-- Mission-driven company
-- Strong engineering culture
-- Visible AI/ML investment
+-

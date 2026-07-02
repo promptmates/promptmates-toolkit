@@ -1,180 +1,44 @@
 # Getting Started with CareerMate
 
-This guide walks you through setup step by step. No coding experience required.
+## Quick Start (under 5 minutes)
 
----
+1. Copy `skills/careermate.md` to your project's `.claude/skills/` folder
+2. Copy the three files from `context/` to your project's `context/` folder
+3. Rename `search-preferences-example.md` to `search-preferences.md`
+4. Type `/careermate` in Claude Code
 
-## What You Need
+That's it. The agent handles the rest.
 
-1. **Claude Code** installed on your computer. If you do not have it yet:
-   - Visit https://docs.anthropic.com/en/docs/claude-code
-   - Follow the installation instructions for your operating system (Mac, Windows, or Linux)
-   - Claude Code is available as a CLI, desktop app, and IDE extension
+## What Happens on First Run
 
-2. **A project folder** - any folder on your computer where you want to run CareerMate from. This can be an empty folder you create just for this purpose.
+1. The agent asks what you can share (resume, LinkedIn, job descriptions, or a plain description of what you do)
+2. It asks about your preferences (location, remote/hybrid, company stage, deal-breakers)
+3. It asks how wide to search (same title, adjacent roles, or career pivot)
+4. It shows you an expanded title list and asks you to confirm before searching
+5. It searches 15-30 live career boards (takes 2-4 minutes)
+6. It delivers: matched roles, adjacency discoveries, and a personalized search plan with Boolean strings
 
----
+## What Happens on Repeat Runs
 
-## Installation (Step by Step)
+The agent reads your saved preferences and confirms they're still current. If nothing changed, it skips intake and goes straight to search. Your preferences file grows smarter over time.
 
-### 1. Download the files
+## Tips
 
-On this GitHub page:
-1. Click the green **Code** button (top right area of the file list)
-2. Click **Download ZIP**
-3. Find the ZIP in your Downloads folder and unzip it (double-click on Mac, right-click > Extract on Windows)
+- **Upload a resume PDF** if you have one. It extracts more signal than a plain description.
+- **Include a target JD** if you have one in mind. The agent uses it to calibrate the search direction.
+- **Say "adjacent roles"** when asked about scope. This is where CareerMate's value shows: titles you qualify for but aren't searching.
+- **Edit target-companies.md** to add companies you're specifically interested in. The default list is a good start but your interests are more specific.
+- **Run the Boolean strings yourself** in your browser. The agent gives you copy-paste strings for LinkedIn, Google, and specific ATS sites. These reach places the agent's API calls cannot.
 
-You now have a folder with the CareerMate files inside.
-
-### 2. Set up your project folder
-
-Pick or create a folder for your job search. For example:
-- Mac: `/Users/yourname/job-search/`
-- Windows: `C:\Users\yourname\job-search\`
-
-Inside that folder, create this structure:
+## Folder Structure After Install
 
 ```
-job-search/
+your-project/
   .claude/
     skills/
+      careermate.md          <- the skill (agent instructions)
   context/
+    guardrails.md            <- output quality rules
+    target-companies.md      <- which boards to search
+    search-preferences.md    <- your preferences (populated after first run)
 ```
-
-**On Mac:**
-- Open Terminal
-- Run: `mkdir -p ~/job-search/.claude/skills ~/job-search/context`
-
-**On Windows:**
-- Open Command Prompt
-- Run: `mkdir %USERPROFILE%\job-search\.claude\skills %USERPROFILE%\job-search\context`
-
-**Or just use Finder/File Explorer** to create the folders manually. Note: `.claude` starts with a dot, which makes it hidden by default. On Mac, press Cmd+Shift+. to show hidden files. On Windows, check "Hidden items" in the View menu.
-
-### 3. Copy files into place
-
-From the downloaded folder:
-
-| Copy this file | To this location |
-|---|---|
-| `skills/careermate.md` | `your-project/.claude/skills/careermate.md` |
-| `context/guardrails-example.md` | `your-project/context/guardrails.md` (rename it) |
-| `context/search-preferences-example.md` | `your-project/context/search-preferences.md` (rename it) |
-
-### 4. Fill in your search preferences
-
-Open `context/search-preferences.md` in any text editor (TextEdit, Notepad, VS Code, whatever you have).
-
-Replace the example content with your actual preferences:
-- Where you are located
-- Whether you want remote, hybrid, or onsite
-- What industries interest you
-- Your compensation floor (optional)
-- Any deal-breakers
-
-This file is private to your computer. It never gets uploaded anywhere.
-
-### 5. Verify it works
-
-1. Open Claude Code
-2. Navigate to your project folder (or open it from the desktop app)
-3. Type: `/careermate`
-4. Claude should respond by asking what you have (resume, LinkedIn, etc.)
-
-If Claude does not recognize the command, double-check that `careermate.md` is in the `.claude/skills/` folder (with the dot).
-
----
-
-## Your First Run
-
-When you type `/careermate`, here is what happens:
-
-**Step 1: Claude asks what you have**
-
-Share whatever you have:
-- Paste your resume text
-- Paste a LinkedIn "About" section or experience summary
-- Paste 1-2 job descriptions you are interested in
-- Or just describe what you do in plain language
-
-Any combination works. More detail = better results.
-
-**Step 2: Claude asks what matters to you**
-
-Answer honestly:
-- Location and remote preferences
-- Company type (startup vs. enterprise)
-- Industry preferences
-- Comp expectations (optional)
-- Deal-breakers
-
-**Step 3: Claude asks how wide to search**
-
-Three options:
-- **Same title only**: Conservative. Only finds roles matching your exact current/recent title.
-- **Adjacent roles**: Moderate. Finds roles your skills qualify you for even if the title is different. This is the recommended starting point.
-- **Career pivot**: Wide. Looks at functions adjacent to yours where your transferable skills apply.
-
-**Step 4: You get results**
-
-Claude returns:
-1. Your expanded profile (skills + title expansion)
-2. Matched roles with links
-3. Roles you are probably missing
-4. A search plan with Boolean strings
-
----
-
-## After Your First Run
-
-### Run it again with different settings
-
-- If results were too narrow: switch from "same title" to "adjacent roles"
-- If results were too broad: add more deal-breakers or narrow the industry
-- If a specific adjacency discovery surprised you: ask Claude to dig deeper on that direction
-
-### Use the Boolean strings
-
-The search plan includes copy-paste Boolean strings for:
-- LinkedIn job search bar
-- Google
-- Direct ATS boards (Greenhouse, Lever, Ashby, Workday)
-
-Paste these into the respective search bars exactly as written. They are pre-built for your expanded profile.
-
-### Set a weekly routine
-
-The search plan includes a suggested cadence. Job searching is a grind. A routine makes it sustainable:
-- Monday: Run fresh Booleans
-- Wednesday: Check aggregator platforms
-- Friday: Review adjacency angles
-
----
-
-## FAQ
-
-**Do I need to pay for Claude Code?**
-Claude Code requires an Anthropic account. Check current pricing at anthropic.com.
-
-**Does CareerMate apply to jobs for me?**
-No. It finds and surfaces roles. You decide which to pursue and apply yourself.
-
-**Is my resume data sent somewhere?**
-Your data stays between you and Claude. It is not stored, indexed, or shared with employers. Claude processes it in the conversation and that is it.
-
-**Can I use this if I am not in tech?**
-Yes. CareerMate works for any background. The skill adjacency logic is universal. If you are a nurse, a teacher, a marketer, or an accountant, it will still map your skills to roles you are missing.
-
-**How often should I run it?**
-Weekly is a good cadence. New roles get posted constantly. Running it fresh each week catches postings from the last 7 days.
-
-**What if I do not have a resume?**
-That is fine. You can describe what you do in plain language, paste your LinkedIn summary, or share a job description you are interested in. Any starting point works.
-
----
-
-## Getting Help
-
-- Open an issue on this GitHub repo
-- Email: jason@promptmates.ai
-- Community: promptmates.ai
