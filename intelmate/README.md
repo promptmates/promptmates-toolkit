@@ -37,16 +37,27 @@ Pick one deliverable, a few, or say "everything."
 
 ## Install (15 minutes, one time)
 
-### Step 1: Download IntelMate
+### Step 1: Create a project folder
+
+Create a permanent folder on your computer that will be IntelMate's home (e.g. `~/intelmate` or `~/Documents/intelmate`). This is where your competitive intel, context files, and results will live across sessions.
+
+Then open Claude Code pointed at that folder:
+- **CLI:** `claude --project ~/intelmate`
+- **VS Code:** File > Open Folder > select your folder, then open Claude Code in the sidebar
+- **Desktop app:** Choose your folder when asked for a working directory
+
+Do not skip this step. If you paste the GitHub URL directly into Claude Code without creating your own folder first, it will use a temporary directory that disappears when you close the session, causing a "Folder not found" error on your next visit.
+
+### Step 2: Download IntelMate
 
 1. Click the green **Code** button on this GitHub page
 2. Click **Download ZIP**
 3. Unzip the downloaded file
 4. Find the `intelmate` folder inside
 
-### Step 2: Create the required folders
+### Step 3: Create the required folders
 
-Inside your Claude Code project folder, create:
+Inside your project folder (the one you created in Step 1), create:
 
 ```
 your-project/
@@ -57,18 +68,18 @@ your-project/
 
 On Mac, press Cmd+Shift+. in Finder to see hidden folders (the `.claude` folder starts with a dot).
 
-### Step 3: Copy the skill file
+### Step 4: Copy the skill file
 
 From the downloaded folder, copy:
 - `intelmate/skills/intelmate.md` into your project's `.claude/skills/` folder
 
-### Step 4: Create your context files
+### Step 5: Create your context files
 
 Copy `context/company-profile-example.md` to `context/company-profile.md` and fill in your company info (mission, headcount, EVP, comp ranges).
 
 Copy `context/guardrails-example.md` to `context/guardrails.md`.
 
-### Step 5: Run it
+### Step 6: Run it
 
 Open Claude Code in your project folder and type:
 

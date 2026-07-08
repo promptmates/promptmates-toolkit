@@ -7,7 +7,7 @@ This guide gets IntelMate running in your Claude Code. Two options: let Claude d
 ## Before You Start
 
 You need:
-1. **Claude Code** installed with a project folder open
+1. **Claude Code** installed and open in a permanent project folder. Create a folder on your computer (e.g. `~/intelmate`) and open Claude Code pointed at it. Do not use a temp directory or paste the GitHub URL directly into Claude Code, as that creates a session folder that disappears when you close it ("Folder not found" error).
 2. A list of 3-10 competitors you want to track (company names; career page URLs are helpful but optional)
 
 No special MCP or API keys required. IntelMate uses WebFetch to hit public career page APIs.

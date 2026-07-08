@@ -6,7 +6,7 @@ This guide gets RulesMate running in your Claude Code project. Takes about 5 min
 
 ## Before You Start
 
-You need Claude Code installed and a project folder open. If you don't have that yet, set it up first.
+You need Claude Code installed and open in a permanent project folder. If you don't have one yet, create a folder on your computer (e.g. `~/my-workspace`) and open Claude Code pointed at it. Do not paste the GitHub URL directly into Claude Code as your working directory, as it creates a temp folder that disappears between sessions ("Folder not found" error).
 
 ---
 

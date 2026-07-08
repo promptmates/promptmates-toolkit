@@ -11,7 +11,7 @@ Open your queue file and instantly see: what's moving, what's stuck, what's wait
 ## Prerequisites
 
 - Claude Code installed and working
-- A workspace where you use Claude Code regularly
+- A permanent project folder on your computer (e.g. `~/my-workspace`). Open Claude Code pointed at this folder. Do not use a temp directory or paste the GitHub URL directly into Claude Code as your working directory, as it creates a session folder that disappears when you close it ("Folder not found" error).
 - That's it. No APIs, no integrations, no accounts.
 
 ## Installation (5 minutes)

@@ -45,16 +45,27 @@ Think of these as status labels. Each task gets one at a time:
 
 ## Install (5 minutes, one time)
 
-### Step 1: Download TrailMate
+### Step 1: Create a project folder
+
+Create a permanent folder on your computer that will be your workspace (e.g. `~/my-workspace` or `~/Documents/my-project`). This is where your task queue and context will live across sessions.
+
+Then open Claude Code pointed at that folder:
+- **CLI:** `claude --project ~/my-workspace`
+- **VS Code:** File > Open Folder > select your folder, then open Claude Code in the sidebar
+- **Desktop app:** Choose your folder when asked for a working directory
+
+Do not skip this step. If you paste the GitHub URL directly into Claude Code without creating your own folder first, it will use a temporary directory that disappears when you close the session, causing a "Folder not found" error on your next visit.
+
+### Step 2: Download TrailMate
 
 1. Click the green **Code** button on this GitHub page
 2. Click **Download ZIP**
 3. Unzip the downloaded file
 4. Find the `trailmate` folder inside
 
-### Step 2: Create the required folders
+### Step 3: Create the required folders
 
-Inside your Claude Code project folder, create:
+Inside your project folder (the one you created in Step 1), create:
 
 ```
 your-project/
@@ -65,16 +76,16 @@ your-project/
 
 On Mac, press Cmd+Shift+. in Finder to see hidden folders (the `.claude` folder starts with a dot).
 
-### Step 3: Copy the skill file
+### Step 4: Copy the skill file
 
 From the downloaded folder, copy:
 - `trailmate/skills/trailmate.md` into your project's `.claude/skills/` folder
 
-### Step 4: Set up your queue
+### Step 5: Set up your queue
 
 Copy `context/queue-example.md` to your workspace root as `task_queue.md`. This is the file where tasks live.
 
-### Step 5: Add the session instruction
+### Step 6: Add the session instruction
 
 Add this line to your `CLAUDE.md` (or create one if you don't have it):
 
@@ -82,7 +93,7 @@ Add this line to your `CLAUDE.md` (or create one if you don't have it):
 Read `task_queue.md` at session start. Update when tasks change state. Write a receipt before session end or context compaction if anything is in progress.
 ```
 
-### Step 6: Start working
+### Step 7: Start working
 
 The trail builds itself. Run `/trailmate` any time you want to check status or interact with the queue directly.
 

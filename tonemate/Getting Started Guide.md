@@ -7,7 +7,7 @@ This guide gets ToneMate running in your Claude Code. Two options: let Claude do
 ## Before You Start
 
 You need two things:
-1. **Claude Code** installed with a project folder open
+1. **Claude Code** installed and open in a permanent project folder. Create a folder on your computer (e.g. `~/tonemate`) and open Claude Code pointed at it. Do not use a temp directory or paste the GitHub URL directly into Claude Code, as that creates a session folder that disappears when you close it ("Folder not found" error).
 2. **A Gmail MCP** connected (this gives Claude permission to search and read your sent emails)
 
 If you do not have a Gmail MCP set up, you will need to do that first. Search "Gmail MCP Claude Code" for setup guides for your specific MCP server. Common options: Google Workspace MCP, standalone Gmail MCP servers.

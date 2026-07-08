@@ -45,16 +45,27 @@ Every example in the file is a direct quote from your actual emails. Not hypothe
 
 ## Install (15 minutes, one time)
 
-### Step 1: Download ToneMate
+### Step 1: Create a project folder
+
+Create a permanent folder on your computer that will be ToneMate's home (e.g. `~/tonemate` or `~/Documents/tonemate`). This is where your tone profile and context files will live across sessions.
+
+Then open Claude Code pointed at that folder:
+- **CLI:** `claude --project ~/tonemate`
+- **VS Code:** File > Open Folder > select your folder, then open Claude Code in the sidebar
+- **Desktop app:** Choose your folder when asked for a working directory
+
+Do not skip this step. If you paste the GitHub URL directly into Claude Code without creating your own folder first, it will use a temporary directory that disappears when you close the session, causing a "Folder not found" error on your next visit.
+
+### Step 2: Download ToneMate
 
 1. Click the green **Code** button on this GitHub page
 2. Click **Download ZIP**
 3. Unzip the downloaded file
 4. Find the `tonemate` folder inside
 
-### Step 2: Create the required folders
+### Step 3: Create the required folders
 
-Inside your Claude Code project folder, create:
+Inside your project folder (the one you created in Step 1), create:
 
 ```
 your-project/
@@ -65,20 +76,20 @@ your-project/
 
 On Mac, press Cmd+Shift+. in Finder to see hidden folders (the `.claude` folder starts with a dot).
 
-### Step 3: Copy the skill file
+### Step 4: Copy the skill file
 
 From the downloaded folder, copy:
 - `tonemate/skills/tonemate.md` into your project's `.claude/skills/` folder
 
-### Step 4: Set up context
+### Step 5: Set up context
 
 Copy `context/guardrails-example.md` to `context/guardrails.md` (modify if needed).
 
-### Step 5: Verify Gmail MCP is working
+### Step 6: Verify Gmail MCP is working
 
 Before running ToneMate, confirm your Gmail MCP is connected. Try a simple Gmail search in Claude Code to verify.
 
-### Step 6: Run it
+### Step 7: Run it
 
 Open Claude Code in your project folder and type:
 

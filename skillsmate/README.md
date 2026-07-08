@@ -32,7 +32,18 @@ When you run `/skillsmate` and paste a JD, you get 4 deliverables:
 
 ## Install (15 minutes, one time)
 
-### Step 1: Download SkillsMate
+### Step 1: Create a project folder
+
+Create a permanent folder on your computer that will be SkillsMate's home (e.g. `~/skillsmate` or `~/Documents/skillsmate`). This is where your sourcing profiles, context files, and results will live across sessions.
+
+Then open Claude Code pointed at that folder:
+- **CLI:** `claude --project ~/skillsmate`
+- **VS Code:** File > Open Folder > select your folder, then open Claude Code in the sidebar
+- **Desktop app:** Choose your folder when asked for a working directory
+
+Do not skip this step. If you paste the GitHub URL directly into Claude Code without creating your own folder first, it will use a temporary directory that disappears when you close the session, causing a "Folder not found" error on your next visit.
+
+### Step 2: Download SkillsMate
 
 You are on GitHub right now (https://github.com/promptmates/promptmates-toolkit). Here is how to download:
 
@@ -41,19 +52,9 @@ You are on GitHub right now (https://github.com/promptmates/promptmates-toolkit)
 3. Find the downloaded ZIP file (probably in your Downloads folder) and unzip it
 4. You now have a folder called `promptmates-toolkit-main`. Inside it, find the `skillsmate` subfolder.
 
-### Step 2: Find your Claude Code project folder
-
-You need to know where your Claude Code project lives on your computer. This is the folder you opened in Claude Code (the one shown in the terminal or sidebar).
-
-If you are not sure, type this in Claude Code:
-```
-Where is my project folder?
-```
-Claude will tell you the path (something like `/Users/yourname/my-project` on Mac or `C:\Users\yourname\my-project` on Windows).
-
 ### Step 3: Create the required folders
 
-Inside your project folder, you need two folders. If they do not already exist, create them:
+Inside your project folder (the one you created in Step 1), you need two folders. If they do not already exist, create them:
 
 **On Mac (Finder):**
 1. Open your project folder in Finder

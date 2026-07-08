@@ -37,6 +37,8 @@ Five principles that prevent the most common AI mistakes in TA workflows:
 
 ## Install (5 minutes, one time)
 
+**First:** Make sure Claude Code is open in a permanent project folder (not a temp directory). If you don't have one yet, create a folder (e.g. `~/my-workspace`) and open Claude Code pointed at it. If you skip this, your files will disappear between sessions.
+
 ### Option 1: Let Claude Do It (Recommended)
 
 Paste this into Claude Code:
