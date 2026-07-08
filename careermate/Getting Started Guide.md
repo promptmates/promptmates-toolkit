@@ -2,12 +2,15 @@
 
 ## Quick Start (under 5 minutes)
 
-1. Copy `skills/careermate.md` to your project's `.claude/skills/` folder
-2. Copy the three files from `context/` to your project's `context/` folder
-3. Rename `search-preferences-example.md` to `search-preferences.md`
-4. Type `/careermate` in Claude Code
+1. Create a permanent folder on your computer (e.g. `~/careermate`) and open Claude Code pointed at it
+2. Copy `skills/careermate.md` to your project's `.claude/skills/` folder
+3. Copy the three files from `context/` to your project's `context/` folder
+4. Rename `search-preferences-example.md` to `search-preferences.md`
+5. Type `/careermate` in Claude Code
 
 That's it. The agent handles the rest.
+
+**Important:** Step 1 is not optional. If you paste the GitHub URL directly into Claude Code without creating your own folder first, Claude will use a temporary directory that disappears when you close the session. That causes the "Folder not found" error next time you open it. Create a real folder, point Claude Code at it, then install the files there.
 
 ## What Happens on First Run
 

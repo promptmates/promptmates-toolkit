@@ -71,16 +71,35 @@ In our test run, it found **174 live TA/People roles across 47 companies** in a 
 
 ## Install (5 minutes, one time)
 
-### Step 1: Download CareerMate
+### Step 1: Create a project folder
+
+Before anything else, create a permanent folder on your computer that will be CareerMate's home. This is where your preferences, search history, and results will live across sessions.
+
+**Mac/Linux:**
+```bash
+mkdir -p ~/careermate
+```
+
+**Windows:**
+Create a folder called `careermate` in your Documents folder.
+
+Pick any location you want. The only requirement is that it's a real, permanent folder (not Downloads, not Desktop, not a temp folder). If you skip this step and paste the GitHub URL directly into Claude Code, it will create a temporary folder that disappears when you close the session. That causes the "Folder not found" error on your next visit.
+
+Now open Claude Code pointed at that folder:
+- **CLI:** `claude --project ~/careermate`
+- **VS Code:** File > Open Folder > select your careermate folder, then open Claude Code in the sidebar
+- **Desktop app:** When it asks for a working directory, choose your careermate folder
+
+### Step 2: Download CareerMate
 
 1. Click the green **Code** button on this GitHub page
 2. Click **Download ZIP**
 3. Unzip the downloaded file
 4. Find the `careermate` folder inside
 
-### Step 2: Create the required folders
+### Step 3: Create the required folders
 
-Inside your Claude Code project folder, create:
+Inside your project folder (the one you created in Step 1), create:
 
 ```
 your-project/
@@ -92,7 +111,7 @@ your-project/
 
 On Mac, press Cmd+Shift+. in Finder to see hidden folders (the `.claude` folder starts with a dot).
 
-### Step 3: Copy the files
+### Step 4: Copy the files
 
 From the downloaded folder, copy:
 - `careermate/skills/careermate.md` into your project's `.claude/skills/` folder
@@ -102,15 +121,15 @@ From the downloaded folder, copy:
 - `careermate/scripts/discover_boards.py` into your project's `scripts/` folder
 - `careermate/scripts/find_ta_roles.py` into your project's `scripts/` folder
 
-### Step 4: Rename the preferences file
+### Step 5: Rename the preferences file
 
 Rename `search-preferences-example.md` to `search-preferences.md`. Leave it blank for now. CareerMate will populate it from your first conversation.
 
-### Step 5: (Optional) Customize target companies
+### Step 6: (Optional) Customize target companies
 
 Open `context/target-companies.md` and add or remove companies based on your interests. The default list covers 90 verified boards across AI, growth-stage tech, enterprise SaaS, HR tech, healthcare, fintech, consumer, and security. Instructions for finding any company's board token are in the file.
 
-### Step 6: Run it
+### Step 7: Run it
 
 Type `/careermate` in Claude Code. That's it.
 
@@ -207,6 +226,11 @@ On repeat runs, tell the agent: "only search remote roles" or "include startups 
 ---
 
 ## Troubleshooting
+
+**"Folder not found - This session's working folder no longer exists"**
+- This means Claude Code was pointed at a temporary folder that got deleted between sessions.
+- Fix: Create a permanent folder (e.g. `~/careermate`), copy the CareerMate files into it, and open Claude Code pointed at that folder. See Step 1 in the Install section above.
+- If you previously pasted the GitHub URL into Claude Code and let it auto-create a working directory, that directory was temporary. You need to start fresh with a permanent folder.
 
 **"Agent isn't finding many roles"**
 - Check that `context/target-companies.md` includes companies in your industry
