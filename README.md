@@ -28,6 +28,7 @@ You don't need to. Most of these skills work with [Cloud Co-Work](https://claude
 | **ScreenMate** | `/ss` | Take a screenshot, type `/ss`, and Claude reads it and asks what you want to do with it | CLI, Desktop (requires Mac screenshot folder access) |
 | **TrailMate** | `/trailmate` | Agent receipt system for persistent task tracking. Leaves breadcrumbs so nothing evaporates between sessions | CLI, Desktop, VS Code, JetBrains, Cloud Co-Work |
 | **BrowserMate** | `browsermate` | CDP browser harness that lets your agent control a real browser for web automation | CLI, Desktop (requires local CDP browser connection) |
+| **Snap Cup** | `/snap-cup` | Scans your sources for good work worth recognizing, drafts specific credible DMs. Helps non-technical people speak about technical work. | CLI, Desktop, VS Code, JetBrains, Cloud Co-Work |
 
 ---
 
@@ -43,6 +44,7 @@ New to GitHub or Claude Code? Each tool has its own Getting Started guide:
 - [ScreenMate Getting Started](screenmate/Getting%20Started%20Guide.md) (for screenshot-to-action in Claude Code)
 - [TrailMate Getting Started](trailmate/Getting%20Started%20Guide.md) (for persistent task tracking across sessions)
 - [BrowserMate Getting Started](browsermate/README.md) (for browser automation via CDP)
+- [Snap Cup Getting Started](snapcup/Getting%20Started%20Guide.md) (for giving people their flowers)
 
 ---
 
@@ -137,6 +139,13 @@ promptmates-toolkit/
     run.py
     admin.py
     domain-skills/
+  snapcup/
+    README.md
+    Getting Started Guide.md
+    skills/
+      snap-cup.md
+    context/
+      snap-cup-log.md
 ```
 
 ---
