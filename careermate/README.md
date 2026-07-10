@@ -69,69 +69,165 @@ In our test run, it found **174 live TA/People roles across 47 companies** in a 
 
 ---
 
-## Install (5 minutes, one time)
+## Install (10 minutes, one time)
 
-### Step 1: Create a project folder
+These instructions assume you have never used Claude Code before. Every click is spelled out. If you get stuck on any step, that is the guide's fault, not yours.
 
-Before anything else, create a permanent folder on your computer that will be CareerMate's home. This is where your preferences, search history, and results will live across sessions.
+---
 
-**Mac/Linux:**
+### Step 1: Create a folder on your computer
+
+This folder is CareerMate's permanent home. Your preferences, search results, and history will live here. It must be a real folder that stays on your computer (not Downloads, not Desktop, not a temp folder).
+
+**On Mac:**
+1. Open Finder
+2. In the menu bar, click **Go > Home** (or press Shift+Cmd+H)
+3. You are now in your home folder (it has your username)
+4. Right-click in the empty space and choose **New Folder**
+5. Name it `careermate` (all lowercase, one word)
+
+You now have a folder at a location like `/Users/yourname/careermate`. Remember where this is.
+
+**On Windows:**
+1. Open File Explorer
+2. Navigate to your Documents folder
+3. Right-click in the empty space and choose **New > Folder**
+4. Name it `careermate`
+
+---
+
+### Step 2: Open Claude Code pointed at that folder
+
+This is the step most people get stuck on. "Pointed at that folder" means you are telling Claude Code: "this is my workspace, save everything here."
+
+**If you use the Claude Desktop app (most common):**
+1. Open the Claude app on your computer
+2. At the top of the left sidebar, click the **Code** tab (not "Home")
+3. Click **+ New session**
+4. A file picker will appear asking you to choose a folder
+5. Navigate to the `careermate` folder you just created and select it
+6. You should now see the folder name at the bottom of the chat window
+
+If you do NOT see a file picker, look at the bottom of the chat window. There may be a folder path shown there. Click it to change it to your `careermate` folder.
+
+**If you already have a session open with the wrong folder (or the "Folder not found" error):**
+1. Close that session (click X or start a new one)
+2. Click **+ New session**
+3. This time, choose your `careermate` folder
+
+**IMPORTANT:** Do NOT paste the GitHub URL into the chat. That creates a temporary folder that disappears when you close the app. That is what causes the "Folder not found" error.
+
+**If you use VS Code:**
+1. Open VS Code
+2. Click **File > Open Folder**
+3. Navigate to your `careermate` folder and click Open
+4. Open the Claude Code panel in the sidebar (the Anthropic icon)
+5. Claude Code is now pointed at your careermate folder
+
+**If you use the CLI (terminal):**
 ```bash
-mkdir -p ~/careermate
+claude --project ~/careermate
 ```
 
-**Windows:**
-Create a folder called `careermate` in your Documents folder.
+---
 
-Pick any location you want. The only requirement is that it's a real, permanent folder (not Downloads, not Desktop, not a temp folder). If you skip this step and paste the GitHub URL directly into Claude Code, it will create a temporary folder that disappears when you close the session. That causes the "Folder not found" error on your next visit.
+### Step 3: Download the CareerMate files from GitHub
 
-Now open Claude Code pointed at that folder:
-- **CLI:** `claude --project ~/careermate`
-- **VS Code:** File > Open Folder > select your careermate folder, then open Claude Code in the sidebar
-- **Desktop app:** When it asks for a working directory, choose your careermate folder
+1. Go to this GitHub page (you are probably already here)
+2. Look for the green button that says **<> Code** (near the top right of the file list)
+3. Click it, then click **Download ZIP**
+4. Find the downloaded ZIP file (check your Downloads folder)
+5. Double-click the ZIP to unzip it (on Mac this creates a folder automatically; on Windows, right-click > Extract All)
+6. Open the unzipped folder. Inside you will see multiple folders (browsermate, careermate, intelmate, etc.)
+7. Open the **careermate** folder. Inside you will see: `skills/`, `context/`, `scripts/`
 
-### Step 2: Download CareerMate
+Leave this window open. You will copy files from here in the next steps.
 
-1. Click the green **Code** button on this GitHub page
-2. Click **Download ZIP**
-3. Unzip the downloaded file
-4. Find the `careermate` folder inside
+---
 
-### Step 3: Create the required folders
+### Step 4: Create folders inside your careermate workspace
 
-Inside your project folder (the one you created in Step 1), create:
+Go back to your `careermate` folder (the one you created in Step 1). You need to create some subfolders inside it.
 
+**On Mac:**
+1. Open your `careermate` folder in Finder
+2. Create a new folder called `context`
+3. Create a new folder called `scripts`
+4. Now create the hidden folder: press **Cmd+Shift+.** (period) to show hidden files. Then create a folder called `.claude` (with a dot at the start). Inside `.claude`, create a folder called `skills`.
+5. Press **Cmd+Shift+.** again to hide hidden files (optional)
+
+**On Windows:**
+1. Open your `careermate` folder in File Explorer
+2. Create a new folder called `context`
+3. Create a new folder called `scripts`
+4. Create a new folder called `.claude` (with a dot at the start). Windows may warn you about the dot; click OK. Inside `.claude`, create a folder called `skills`.
+
+**When you are done, your careermate folder should contain:**
 ```
-your-project/
+careermate/
   .claude/
-    skills/
-  context/
-  scripts/
+    skills/         (empty for now)
+  context/          (empty for now)
+  scripts/          (empty for now)
 ```
 
-On Mac, press Cmd+Shift+. in Finder to see hidden folders (the `.claude` folder starts with a dot).
+---
 
-### Step 4: Copy the files
+### Step 5: Copy the files into your workspace
 
-From the downloaded folder, copy:
-- `careermate/skills/careermate.md` into your project's `.claude/skills/` folder
-- `careermate/context/guardrails.md` into your project's `context/` folder
-- `careermate/context/target-companies.md` into your project's `context/` folder
-- `careermate/context/search-preferences-example.md` into your project's `context/` folder
-- `careermate/scripts/discover_boards.py` into your project's `scripts/` folder
-- `careermate/scripts/find_ta_roles.py` into your project's `scripts/` folder
+Now copy files from the downloaded GitHub folder (Step 3) into your workspace (Step 1).
 
-### Step 5: Rename the preferences file
+| From the downloaded folder... | Copy into... |
+|------|------|
+| `careermate/skills/careermate.md` | your `careermate/.claude/skills/` folder |
+| `careermate/context/guardrails.md` | your `careermate/context/` folder |
+| `careermate/context/target-companies.md` | your `careermate/context/` folder |
+| `careermate/context/search-preferences-example.md` | your `careermate/context/` folder |
+| `careermate/scripts/discover_boards.py` | your `careermate/scripts/` folder |
+| `careermate/scripts/find_ta_roles.py` | your `careermate/scripts/` folder |
 
-Rename `search-preferences-example.md` to `search-preferences.md`. Leave it blank for now. CareerMate will populate it from your first conversation.
+**How to copy on Mac:** Open both folders side by side in Finder. Drag each file from the left window to the correct folder in the right window.
 
-### Step 6: (Optional) Customize target companies
+**How to copy on Windows:** Open both folders side by side in File Explorer. Drag or Ctrl+C / Ctrl+V each file.
 
-Open `context/target-companies.md` and add or remove companies based on your interests. The default list covers 90 verified boards across AI, growth-stage tech, enterprise SaaS, HR tech, healthcare, fintech, consumer, and security. Instructions for finding any company's board token are in the file.
+---
 
-### Step 7: Run it
+### Step 6: Rename the preferences file
 
-Type `/careermate` in Claude Code. That's it.
+In your `careermate/context/` folder, find the file called `search-preferences-example.md`. Rename it to `search-preferences.md` (remove the `-example` part).
+
+**On Mac:** Click the file once to select it, press Enter, change the name, press Enter again.
+**On Windows:** Click the file once, press F2, change the name, press Enter.
+
+Leave the file empty. CareerMate will fill it in during your first conversation.
+
+---
+
+### Step 7: (Optional) Customize target companies
+
+Open `context/target-companies.md` in any text editor (TextEdit on Mac, Notepad on Windows, or just double-click it). Add or remove companies based on your interests. The default list covers 90 companies across AI, tech, healthcare, fintech, and more. Instructions for adding new companies are inside the file.
+
+---
+
+### Step 8: Run CareerMate
+
+1. Go back to Claude Code (it should still be open and pointed at your careermate folder from Step 2)
+2. In the chat, type: `/careermate`
+3. Press Enter
+
+CareerMate will start by asking you questions about your background and preferences. Follow the prompts.
+
+---
+
+### Checklist: Is it working?
+
+If you see CareerMate asking "What can you share with me to get started?" then you are set up correctly.
+
+If you see an error or nothing happens:
+- Make sure Claude Code is pointed at your careermate folder (check the folder path at the bottom of the chat window)
+- Make sure the file `careermate.md` is inside `.claude/skills/` (not just inside `skills/`)
+- Make sure you did NOT paste the GitHub URL into the chat as your working directory
+- Try closing the session and starting a new one pointed at the correct folder
 
 ---
 
